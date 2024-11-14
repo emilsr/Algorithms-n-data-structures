@@ -23,12 +23,6 @@ public class MyArrayList<E> {
         nrOfElements = 0;
         maxSize = 10;
         data = (E[]) new Object[maxSize];
-
-        if (nrOfElements < maxSize) {
-
-        } else {
-
-        }
     }
 
     public boolean add(E element) {
@@ -43,17 +37,22 @@ public class MyArrayList<E> {
     public boolean remove(E element) {
         for (int i = 0; i <= nrOfElements; i++) {
             if (data[i] == element) {
-                for (int j = i+1; j <= nrOfElements; j++) {}
-                data[i] = null;
+                for (int j = i; j <= nrOfElements; j++) {
+                    data[j] = data[j+1];
+                }
+                return true;
             }
         }
+        return false;
+    }
 
-        if (nrOfElements >= maxSize) {
-            return false;
+    public boolean remove(int index) {
+        if (index >= nrOfElements) {
+            for (int i = index; i <= nrOfElements; i++) {
+                data[i] = data[i+1];
+            }
+            return true;
         }
-
-
-        return true;
-
+        return false;
     }
 }
