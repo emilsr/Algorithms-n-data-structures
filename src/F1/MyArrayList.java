@@ -2,8 +2,7 @@ package F1;
 import java.util.Arrays;
 
 /**
- *  *** Make a ArrayList Class
- *
+ *  * Make a ArrayList Class
  *  *** Requirements ***
  *  boolean add
  *  boolean remove(index)
@@ -52,6 +51,15 @@ public class MyArrayList<E> {
                 data[i] = data[i+1];
             }
             return true;
+        }
+        return false;
+    }
+
+    public boolean contains(E element) {    //maybe return index instead?
+        for (int i = 0; i <= nrOfElements; i++) {
+            if (data[i] == element) {
+                return true;
+            }
         }
         return false;
     }
