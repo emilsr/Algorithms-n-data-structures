@@ -6,7 +6,8 @@ import java.util.Arrays;
  *
  *  *** Requirements ***
  *  boolean add
- *  boolean remove
+ *  boolean remove(index)
+ *  boolean remove(element)
  *  "maxSize"*2  if "nrOfElements" == "maxSize"
  *  boolean contains
  */
@@ -40,10 +41,17 @@ public class MyArrayList<E> {
     }
 
     public boolean remove(E element) {
+        for (int i = 0; i <= nrOfElements; i++) {
+            if (data[i] == element) {
+                for (int j = i+1; j <= nrOfElements; j++) {}
+                data[i] = null;
+            }
+        }
+
         if (nrOfElements >= maxSize) {
             return false;
         }
-        
+
 
         return true;
 
