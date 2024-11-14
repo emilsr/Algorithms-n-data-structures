@@ -1,6 +1,15 @@
 package F1;
 import java.util.Arrays;
 
+/**
+ *  *** Make a ArrayList Class
+ *
+ *  *** Requirements ***
+ *  boolean add
+ *  boolean remove
+ *  "maxSize"*2  if "nrOfElements" == "maxSize"
+ *  boolean contains
+ */
 
 
 public class MyArrayList<E> {
@@ -23,9 +32,20 @@ public class MyArrayList<E> {
 
     public boolean add(E element) {
         if (nrOfElements >= maxSize) {
-
-            return false;   // make data lageer
+            return false;   // make data lager
         }
-                return false;
+        data[nrOfElements+1] = element;
+        nrOfElements++;
+        return true;
+    }
+
+    public boolean remove(E element) {
+        if (nrOfElements >= maxSize) {
+            return false;
+        }
+        
+
+        return true;
+
     }
 }
