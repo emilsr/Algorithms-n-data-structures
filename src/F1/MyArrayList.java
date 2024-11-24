@@ -15,7 +15,7 @@ import java.util.Arrays;
  *  Needed Methods
  *  -- boolean add(E e)     #Done
  *  ----Add element to list return true if successful
- *  -- void add(int index, E e)
+ *  -- void add(int index, E e)     #Done
  *  ---- Add element to list at index, move all elements with the same or higher index to the right one step
  *  -- E get(int index)
  *  ---- Return element in list at index
@@ -45,8 +45,8 @@ public class MyArrayList<E> {
             if (nrOfElements >= maxSize) {
                 return false;   // make data lager
             }
-            nrOfElements++;
             data[nrOfElements] = element;
+            nrOfElements++;
             return true;
         }
         System.out.println("Element is null");
@@ -59,9 +59,18 @@ public class MyArrayList<E> {
             return;
         }
         for (int i = nrOfElements; i > index; i--) {
-            
+            data[i] = data[i - 1];
         }
+        data[index] = element;
+        nrOfElements++;
+    }
 
+    public E get(int index) {
+        if (index < 0 || index >= nrOfElements) {
+            System.out.println("Index out of bounds");
+            return null;
+        }
+        return data[index];
     }
 
     public void remove(int index) {
@@ -86,14 +95,29 @@ public class MyArrayList<E> {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "MyArrayList{" +
+                "data=" + Arrays.toString(data) +
+                ", nrOfElements=" + nrOfElements +
+                ", maxSize=" + maxSize +
+                '}';
+    }
+
     public static void main(String[] args) {
         MyArrayList<Object> testList = new MyArrayList<>();
 
         System.out.println(testList.add(1));
         System.out.println(testList.add(2));
         System.out.println(testList.add(3));
+        System.out.println(testList.toString());
         testList.remove(1);
         testList.remove(2);    // should fail
         System.out.println(testList.toString());
+        testList.add(0, 8);
+        testList.add(10, 8);
+        System.out.println(testList.toString());
+        System.out.println(testList.get(0));
+        System.out.println(testList.get(10));
     }
 }
