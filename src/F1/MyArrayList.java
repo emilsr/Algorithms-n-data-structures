@@ -9,6 +9,21 @@ import java.util.Arrays;
  *  boolean remove(element)
  *  "maxSize"*2  if "nrOfElements" == "maxSize"
  *  boolean contains
+ *
+ *
+ *  Needed Methods
+ *  -- boolean add(E e)
+ *  ----Add element to list return true if successful
+ *  -- void add(int index, E e)
+ *  ---- Add element to list at index, move all elements with the same or higher index to the right one step
+ *  -- E get(int index)
+ *  ---- Return element in list at index
+ *  -- int indexOf(Object o)
+ *  ---- return index of an element
+ *  -- E remove(int index)
+ *  ---- remove object at index, move all object with a higher index to the left one step
+ *  -- E set(int index, E element)
+ *  ---- replace an object at index with new element 
  */
 
 
