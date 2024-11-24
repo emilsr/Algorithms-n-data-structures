@@ -1,4 +1,5 @@
 package F1;
+import java.sql.SQLOutput;
 import java.util.Arrays;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Arrays;
  *
  *
  *  Needed Methods
- *  -- boolean add(E e)
+ *  -- boolean add(E e)     #Done
  *  ----Add element to list return true if successful
  *  -- void add(int index, E e)
  *  ---- Add element to list at index, move all elements with the same or higher index to the right one step
@@ -20,10 +21,10 @@ import java.util.Arrays;
  *  ---- Return element in list at index
  *  -- int indexOf(Object o)
  *  ---- return index of an element
- *  -- E remove(int index)
+ *  -- E remove(int index)      #Works, need clean up
  *  ---- remove object at index, move all object with a higher index to the left one step
  *  -- E set(int index, E element)
- *  ---- replace an object at index with new element 
+ *  ---- replace an object at index with new element
  */
 
 
@@ -40,34 +41,29 @@ public class MyArrayList<E> {
     }
 
     public boolean add(E element) {
-        if (nrOfElements >= maxSize) {
-            return false;   // make data lager
-        }
-        data[nrOfElements+1] = element;
-        nrOfElements++;
-        return true;
-    }
-
-    public boolean remove(E element) {
-        for (int i = 0; i <= nrOfElements; i++) {
-            if (data[i] == element) {
-                for (int j = i; j <= nrOfElements; j++) {
-                    data[j] = data[j+1];
-                }
-                return true;
+        if (element != null) {
+            if (nrOfElements >= maxSize) {
+                return false;   // make data lager
             }
+            nrOfElements++;
+            data[nrOfElements] = element;
+            return true;
         }
+        System.out.println("Element is null");
         return false;
     }
 
-    public boolean remove(int index) {
-        if (index >= nrOfElements) {
+    public void remove(int index) {
+        System.out.println("index is " + index+ " nrOfElements " + nrOfElements);
+        if (index>=nrOfElements){
+            System.out.println("Index: " + index + " dose not exist in list");
+        }
+        if (index < nrOfElements) {
             for (int i = index; i <= nrOfElements; i++) {
                 data[i] = data[i+1];
             }
-            return true;
+            nrOfElements--;
         }
-        return false;
     }
 
     public boolean contains(E element) {    //maybe return index instead?
@@ -77,5 +73,16 @@ public class MyArrayList<E> {
             }
         }
         return false;
+    }
+
+    public static void main(String[] args) {
+        MyArrayList<Object> testList = new MyArrayList<>();
+
+        System.out.println(testList.add(1));
+        System.out.println(testList.add(2));
+        System.out.println(testList.add(3));
+        testList.remove(1);
+        testList.remove(2);    // should fail
+        System.out.println(testList.toString());
     }
 }
