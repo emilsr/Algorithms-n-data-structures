@@ -53,6 +53,17 @@ public class MyArrayList<E> {
         return false;
     }
 
+    public void add(int index, E element) {
+        if (index < 0 || index >= nrOfElements) {
+            System.out.println("Index out of bounds");
+            return;
+        }
+        for (int i = nrOfElements; i > index; i--) {
+            
+        }
+
+    }
+
     public void remove(int index) {
         System.out.println("index is " + index+ " nrOfElements " + nrOfElements);
         if (index>=nrOfElements){
