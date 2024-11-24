@@ -17,13 +17,13 @@ import java.util.Arrays;
  *  ----Add element to list return true if successful
  *  -- void add(int index, E e)     #Done
  *  ---- Add element to list at index, move all elements with the same or higher index to the right one step
- *  -- E get(int index)
+ *  -- E get(int index)     #Done
  *  ---- Return element in list at index
- *  -- int indexOf(Object o)
+ *  -- int indexOf(Object o)    #Done
  *  ---- return index of an element
  *  -- E remove(int index)      #Works, need clean up
  *  ---- remove object at index, move all object with a higher index to the left one step
- *  -- E set(int index, E element)
+ *  -- E set(int index, E element)      #Done
  *  ---- replace an object at index with new element
  */
 
@@ -86,13 +86,24 @@ public class MyArrayList<E> {
         }
     }
 
-    public boolean contains(E element) {    //maybe return index instead?
-        for (int i = 0; i <= nrOfElements; i++) {
+    public E set(int index, E element) {
+        if (index < 0 || index >= nrOfElements) {
+            System.out.println("Index out of bounds");
+            return null;
+        }
+        E temp = data[index];
+        data[index] = element;
+        return temp;
+
+    }
+
+    public int indexOf(E element) {
+        for (int i = 0; i < nrOfElements; i++) {
             if (data[i] == element) {
-                return true;
+                return i;
             }
         }
-        return false;
+        return -1;
     }
 
     @Override
@@ -119,5 +130,8 @@ public class MyArrayList<E> {
         System.out.println(testList.toString());
         System.out.println(testList.get(0));
         System.out.println(testList.get(10));
+        System.out.println(testList.indexOf(8));
+        System.out.println(testList.indexOf(9));
+
     }
 }
