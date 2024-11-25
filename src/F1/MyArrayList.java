@@ -42,8 +42,8 @@ public class MyArrayList<E> {
 
     public boolean add(E element) {
         if (element != null) {
-            if (nrOfElements >= maxSize) {
-                return false;   // make data lager
+            if (nrOfElements == maxSize) {
+                increaseSize();
             }
             data[nrOfElements] = element;
             nrOfElements++;
@@ -64,6 +64,16 @@ public class MyArrayList<E> {
         data[index] = element;
         nrOfElements++;
     }
+
+    private void increaseSize() {
+        maxSize *= 2;
+        E[] temp = (E[]) new Object[maxSize];
+        for (int i = 0; i < nrOfElements; i++) {
+            temp[i] = data[i];
+        }
+        data = temp;
+    }
+
 
     public E get(int index) {
         if (index < 0 || index >= nrOfElements) {
@@ -118,20 +128,16 @@ public class MyArrayList<E> {
     public static void main(String[] args) {
         MyArrayList<Object> testList = new MyArrayList<>();
 
-        System.out.println(testList.add(1));
-        System.out.println(testList.add(2));
-        System.out.println(testList.add(3));
+        testList.add(1);
+        testList.add(2);
+        testList.remove(0);
         System.out.println(testList.toString());
-        testList.remove(1);
-        testList.remove(2);    // should fail
+        testList.remove(0);
         System.out.println(testList.toString());
-        testList.add(0, 8);
-        testList.add(10, 8);
+        for (int i = 0; i < 15; i++) {
+            testList.add(i);
+        }
         System.out.println(testList.toString());
-        System.out.println(testList.get(0));
-        System.out.println(testList.get(10));
-        System.out.println(testList.indexOf(8));
-        System.out.println(testList.indexOf(9));
 
     }
 }
