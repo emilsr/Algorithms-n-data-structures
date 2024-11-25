@@ -20,7 +20,7 @@ public class MyLinkedList<E> {
         private E data;
         private Node<E> next;
 
-        
+
     }
 
 }
