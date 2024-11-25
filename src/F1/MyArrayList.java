@@ -1,5 +1,4 @@
 package F1;
-import java.sql.SQLOutput;
 import java.util.Arrays;
 
 /**
@@ -131,13 +130,12 @@ public class MyArrayList<E> {
         testList.add(1);
         testList.add(2);
         testList.remove(0);
-        System.out.println(testList.toString());
+        System.out.println(testList);
         testList.remove(0);
-        System.out.println(testList.toString());
+        System.out.println(testList);
         for (int i = 0; i < 15; i++) {
             testList.add(i);
         }
-        System.out.println(testList.toString());
-
+        System.out.println(testList);
     }
 }
