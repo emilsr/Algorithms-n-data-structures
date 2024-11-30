@@ -38,6 +38,7 @@ public class MySingleLinkedList<E> {
             addFisrt(item);
         } else {
             Node<E> node = getNode(index-1);
+            addAfter(node, item);
         }
     }
 
@@ -46,6 +47,10 @@ public class MySingleLinkedList<E> {
     }
 
     private void addFisrt(E data){
+
+    }
+
+    private void addAfter(Node<E> node, E item){
 
     }
 
