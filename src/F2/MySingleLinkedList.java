@@ -34,8 +34,11 @@ public class MySingleLinkedList<E> {
     }
 
     public void add(int index, E item){
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException();
+        }
         if (index == 0){
-            addFisrt(item);
+            addFirst(item);
         } else {
             Node<E> node = getNode(index-1);
             addAfter(node, item);
@@ -43,19 +46,20 @@ public class MySingleLinkedList<E> {
     }
 
     private Node<E> getNode(int index){
-        return null;
+        Node<E> node = head;
+        for (int i = 0; i < index && node != null; i++) {
+            node = node.next;
+        }
+        return node;
     }
 
-    private void addFisrt(E data){
-
+    private void addFirst(E item){
+        head = new Node<E>(item, head);
+        size++;
     }
 
     private void addAfter(Node<E> node, E item){
-
+        node.next = new Node<E>(item, node.next);
+        size++;
     }
-
-
-
-
-
 }
