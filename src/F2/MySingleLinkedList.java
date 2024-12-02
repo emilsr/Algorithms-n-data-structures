@@ -84,10 +84,17 @@ public class MySingleLinkedList<E> {
     }
 
     public String toString(){
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder("[");
         Node<E> node = head;
-        while (node != null) {
+        if (head != null){
+            while (node.next != null) {
+                sb.append(node.data.toString());
+                sb.append(" -> ");
+                node = node.next;
+            }
             sb.append(node.data.toString());
         }
+        sb.append("]");
+        return sb.toString();
     }
 }
