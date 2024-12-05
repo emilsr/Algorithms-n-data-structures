@@ -1,8 +1,11 @@
 package F3;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * needed methods
- * E pop(E item)
+ * E pop()
  * -- Add item on top of stack and return it
  * E push(E item)
  * -- remove and get item on top of stack
@@ -16,5 +19,30 @@ package F3;
 
  */
 
-public class MyStack {
+public class MyStack<E> {
+    private E[] stack;
+    private int maxSize = 10;
+    private int currentSize;
+
+    MyStack() {
+        E[] stack = (E[]) new Object[maxSize];
+        currentSize = -1;
+    }
+
+    public E push(E item) {
+        if (currentSize == maxSize) {
+            return null;
+            // handle maxSize increase
+        }
+        stack[++currentSize] = item;
+        return item;
+    }
+
+    public E pop() {
+        if (currentSize == -1) {
+            throw new IndexOutOfBoundsException("Stack is empty");
+        }
+        return stack[currentSize--];
+    }
+
 }
