@@ -1,8 +1,5 @@
 package F3;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 /**
  * needed methods
  * E pop()
@@ -63,5 +60,15 @@ public class MyStack<E> {
             }
         }
         return -1;
+    }
+
+    ////////// Healer methods //////////
+
+    private void increaseSize() {
+        E [] temp = (E[]) new Object[maxSize*2];
+        for (int i = currentSize + 1; i > 0; i--) {
+            temp[i] = stack[i];
+        }
+        stack = temp;
     }
 }
