@@ -45,4 +45,10 @@ public class MyStack<E> {
         return stack[currentSize--];
     }
 
+    public E peek() {
+        if (currentSize == -1) {
+            throw new IndexOutOfBoundsException("Stack is empty");
+        }
+        return stack[currentSize];
+    }
 }
