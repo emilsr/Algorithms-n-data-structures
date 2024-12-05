@@ -51,4 +51,8 @@ public class MyStack<E> {
         }
         return stack[currentSize];
     }
+
+    public boolean isEmpty() {
+        return currentSize == -1;
+    }
 }
