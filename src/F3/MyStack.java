@@ -14,8 +14,6 @@ import java.util.Arrays;
  * -- return top item on stack without removing it
  * int search(E item)
  * -- get index of item in stack
- *
-
  */
 
 public class MyStack<E> {
@@ -31,7 +29,7 @@ public class MyStack<E> {
     public E push(E item) {
         System.out.println("current index: " + currentSize);
 
-        if (currentSize == maxSize) {
+        if (currentSize == maxSize-1) {
             System.out.println("Stack is full, call increaseSize()");
             increaseSize();
         }
@@ -80,7 +78,7 @@ public class MyStack<E> {
     private void increaseSize() {
         maxSize = maxSize * 2;
         E [] temp = (E[]) new Object[maxSize];
-        for (int i = 0; i < currentSize; i++) {
+        for (int i = 0; i <= currentSize; i++) {
             temp[i] = stack[i];
         }
         stack = temp;
@@ -113,16 +111,20 @@ public class MyStack<E> {
 
 
         // Test stack expansion
-        for (int i = 0; i < 10; i++) {
-            System.out.println(intStack);
+        for (int i = 0; i < 11; i++) {
             intStack.push(i);
+            System.out.println(intStack);
         }
+        /*
         System.out.println("Stack size after multiple pushes: " + (intStack.search(intStack.peek()) + 1));
+
 
         // Test String Stack
         MyStack<String> stringStack = new MyStack<>();
         stringStack.push("Hello");
         stringStack.push("World");
         System.out.println("String stack top: " + stringStack.peek());
+
+         */
     }
 }
