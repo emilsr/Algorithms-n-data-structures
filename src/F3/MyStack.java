@@ -22,7 +22,7 @@ public class MyStack<E> {
     private int currentSize;
 
     MyStack() {
-        E[] stack = (E[]) new Object[maxSize];
+        stack = (E[]) new Object[maxSize];
         currentSize = -1;
     }
 
@@ -31,7 +31,11 @@ public class MyStack<E> {
             return null;
             // handle maxSize increase
         }
-        stack[++currentSize] = item;
+        System.out.println("Pushed " + item + " to the stack on index " + currentSize);
+        currentSize++;
+        System.out.println("Pushed " + item + " to the stack on index " + currentSize);
+        stack[0] = item;
+        System.out.println("Pushed " + item + " to the stack on index " + currentSize);
         return item;
     }
 
@@ -70,5 +74,43 @@ public class MyStack<E> {
             temp[i] = stack[i];
         }
         stack = temp;
+    }
+
+    public static void main(String[] args) {
+        // Test Integer Stack
+        MyStack<Integer> intStack = new MyStack<>();
+
+        // Test push and isEmpty
+        System.out.println("Initial stack empty: " + intStack.isEmpty());
+        intStack.push(10);
+        /*
+        intStack.push(20);
+        intStack.push(30);
+        System.out.println("Stack after pushing 10, 20, 30 is empty: " + intStack.isEmpty());
+
+        // Test peek
+        System.out.println("Top of stack: " + intStack.peek());
+
+        // Test search
+        System.out.println("Position of 20: " + intStack.search(20));
+        System.out.println("Position of 50: " + intStack.search(50));
+
+        // Test pop
+        System.out.println("Popped item: " + intStack.pop());
+        System.out.println("Top of stack after pop: " + intStack.peek());
+
+        // Test stack expansion
+        for (int i = 0; i < 10; i++) {
+            intStack.push(i * 100);
+        }
+        System.out.println("Stack size after multiple pushes: " + (intStack.search(intStack.peek()) + 1));
+
+        // Test String Stack
+        MyStack<String> stringStack = new MyStack<>();
+        stringStack.push("Hello");
+        stringStack.push("World");
+        System.out.println("String stack top: " + stringStack.peek());
+
+         */
     }
 }
