@@ -31,11 +31,7 @@ public class MyStack<E> {
             return null;
             // handle maxSize increase
         }
-        System.out.println("Pushed " + item + " to the stack on index " + currentSize);
-        currentSize++;
-        System.out.println("Pushed " + item + " to the stack on index " + currentSize);
-        stack[0] = item;
-        System.out.println("Pushed " + item + " to the stack on index " + currentSize);
+        stack[++currentSize] = item;
         return item;
     }
 
@@ -83,10 +79,10 @@ public class MyStack<E> {
         // Test push and isEmpty
         System.out.println("Initial stack empty: " + intStack.isEmpty());
         intStack.push(10);
-        /*
         intStack.push(20);
         intStack.push(30);
         System.out.println("Stack after pushing 10, 20, 30 is empty: " + intStack.isEmpty());
+        /*
 
         // Test peek
         System.out.println("Top of stack: " + intStack.peek());
