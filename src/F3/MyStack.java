@@ -55,4 +55,13 @@ public class MyStack<E> {
     public boolean isEmpty() {
         return currentSize == -1;
     }
+
+    public int search(E item) {
+        for (int i = 0; i < currentSize; i++) {
+            if (stack[i].equals(item)) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }
