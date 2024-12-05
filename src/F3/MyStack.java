@@ -23,7 +23,7 @@ public class MyStack<E> {
 
     MyStack() {
         stack = (E[]) new Object[maxSize];
-        currentSize = -1;
+        currentSize = 0;
     }
 
     public E push(E item) {
@@ -33,7 +33,7 @@ public class MyStack<E> {
             System.out.println("Stack is full, call increaseSize()");
             increaseSize();
         }
-        stack[++currentSize] = item;
+        stack[currentSize++] = item;
         return item;
     }
 
