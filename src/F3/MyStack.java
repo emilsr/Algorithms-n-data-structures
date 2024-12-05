@@ -1,5 +1,7 @@
 package F3;
 
+import java.util.Arrays;
+
 /**
  * needed methods
  * E pop()
@@ -28,8 +30,7 @@ public class MyStack<E> {
 
     public E push(E item) {
         if (currentSize == maxSize) {
-            return null;
-            // handle maxSize increase
+            increaseSize();
         }
         stack[++currentSize] = item;
         return item;
@@ -54,7 +55,7 @@ public class MyStack<E> {
     }
 
     public int search(E item) {
-        for (int i = 0; i < currentSize; i++) {
+        for (int i = 0; i <= currentSize; i++) {
             if (stack[i].equals(item)) {
                 return i;
             }
@@ -62,11 +63,21 @@ public class MyStack<E> {
         return -1;
     }
 
+    @Override
+    public String toString() {
+        return "MyStack{" +
+                "stack=" + Arrays.toString(stack) +
+                ", maxSize=" + maxSize +
+                ", currentSize=" + currentSize +
+                '}';
+    }
+
     ////////// Healer methods //////////
 
     private void increaseSize() {
-        E [] temp = (E[]) new Object[maxSize*2];
-        for (int i = currentSize + 1; i > 0; i--) {
+        maxSize = maxSize * 2;
+        E [] temp = (E[]) new Object[maxSize];
+        for (int i = 0; i < currentSize; i++) {
             temp[i] = stack[i];
         }
         stack = temp;
@@ -82,7 +93,6 @@ public class MyStack<E> {
         intStack.push(20);
         intStack.push(30);
         System.out.println("Stack after pushing 10, 20, 30 is empty: " + intStack.isEmpty());
-        /*
 
         // Test peek
         System.out.println("Top of stack: " + intStack.peek());
@@ -95,6 +105,8 @@ public class MyStack<E> {
         System.out.println("Popped item: " + intStack.pop());
         System.out.println("Top of stack after pop: " + intStack.peek());
 
+        intStack.toString();
+
         // Test stack expansion
         for (int i = 0; i < 10; i++) {
             intStack.push(i * 100);
@@ -106,7 +118,5 @@ public class MyStack<E> {
         stringStack.push("Hello");
         stringStack.push("World");
         System.out.println("String stack top: " + stringStack.peek());
-
-         */
     }
 }
