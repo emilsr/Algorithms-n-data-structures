@@ -29,7 +29,10 @@ public class MyStack<E> {
     }
 
     public E push(E item) {
+        System.out.println("current index: " + currentSize);
+
         if (currentSize == maxSize) {
+            System.out.println("Stack is full, call increaseSize()");
             increaseSize();
         }
         stack[++currentSize] = item;
@@ -86,7 +89,7 @@ public class MyStack<E> {
     public static void main(String[] args) {
         // Test Integer Stack
         MyStack<Integer> intStack = new MyStack<>();
-
+/*
         // Test push and isEmpty
         System.out.println("Initial stack empty: " + intStack.isEmpty());
         intStack.push(10);
@@ -105,11 +108,14 @@ public class MyStack<E> {
         System.out.println("Popped item: " + intStack.pop());
         System.out.println("Top of stack after pop: " + intStack.peek());
 
-        intStack.toString();
+
+ */
+
 
         // Test stack expansion
         for (int i = 0; i < 10; i++) {
-            intStack.push(i * 100);
+            System.out.println(intStack);
+            intStack.push(i);
         }
         System.out.println("Stack size after multiple pushes: " + (intStack.search(intStack.peek()) + 1));
 
