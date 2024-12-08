@@ -40,7 +40,7 @@ public class MyCircularQue<E> {
 
     public MyCircularQue(int maxSize){
         this.maxSize = maxSize;
-        front = -1;
+        front = 0;
         rear = maxSize-1;
         size = 0;
         data = (E[]) new Object[maxSize];
@@ -54,7 +54,8 @@ public class MyCircularQue<E> {
         } else if(rear == front){   // Maby this check will need to be moved...
             return false; //ToDo imp reallocate 
         }
-        data[++front] = element;
+        data[front] = element;
+        rear++;
         size++;
         return true;
     }
