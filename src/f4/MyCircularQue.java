@@ -40,13 +40,13 @@ public class MyCircularQue<E> {
 
     public MyCircularQue(int maxSize){
         this.maxSize = maxSize;
-        front = 0;
+        front = -1;
         rear = maxSize-1;
         size = 0;
         data = (E[]) new Object[maxSize];
     }
 
-    boolean add(E element){
+    public boolean add(E element){
         if (rear == maxSize) {
             return false; //ToDo Move que so rear = 0 
         } else if (front == maxSize) {
@@ -54,9 +54,20 @@ public class MyCircularQue<E> {
         } else if(rear == front){   // Maby this check will need to be moved...
             return false; //ToDo imp reallocate 
         }
-        data[front++] = element;
+        data[++front] = element;
+        size++;
         return true;
     }
+
+    public E remove(){
+        if (size == 0) {
+            throw new IllegalArgumentException("Que is empty...");
+        }
+        size--;
+        front--;
+        return data[front+1];
+    }
+
 
     @Override 
     public String toString(){
@@ -65,9 +76,9 @@ public class MyCircularQue<E> {
             sb.append(data[i] + " ");
         }
         sb.append("] fronmt: " + front +
-        " rear: " + rear  + 
-        "size: " + size +
-        " maxSize: " + maxSize
+        ", rear: " + rear  + 
+        ", size: " + size +
+        ", maxSize: " + maxSize
         );
         return sb.toString();
     }
@@ -79,7 +90,13 @@ public class MyCircularQue<E> {
         testQ.add("A");
         testQ.add("B");
         System.out.println(testQ);
-
+        System.out.println("Removed: " + testQ.remove());
+        System.out.println(testQ);
+        System.out.println("Removed: " + testQ.remove());
+        System.out.println(testQ);
+        System.out.println("Removed: " + testQ.remove());
+        System.out.println(testQ);
+        System.out.println("Removed: " + testQ.remove());
 
     }
 
