@@ -1,5 +1,7 @@
 package f4;
 
+import java.lang.reflect.Array;
+
 /**
  *  Circular array
  *
@@ -32,15 +34,53 @@ package f4;
  *  inmp isEmpty and size from interface
  *
  */
-public class MyCircularQue {
+public class MyCircularQue<E> {
+    private int front, rear, size, maxSize;
+    private E[] data;
 
-    public class ArrayQueue<E> {
-        private int front, rear, size, maxSize;
-        private E[] data;
+    public MyCircularQue(int maxSize){
+        this.maxSize = maxSize;
+        front = 0;
+        rear = maxSize-1;
+        size = 0;
+        data = (E[]) new Object[maxSize];
+    }
 
-        public ArrayQueue(int maxSize) {
-            this.maxSize = maxSize;
+    boolean add(E element){
+        if (rear == maxSize) {
+            return false; //ToDo Move que so rear = 0 
+        } else if (front == maxSize) {
+            return false; //ToDo set frnt = 0; 
+        } else if(rear == front){   // Maby this check will need to be moved...
+            return false; //ToDo imp reallocate 
         }
+        data[front++] = element;
+        return true;
+    }
+
+    @Override 
+    public String toString(){
+        StringBuilder sb = new StringBuilder("My Que [" );
+        for (int i = 0; i < maxSize; i++){
+            sb.append(data[i] + " ");
+        }
+        sb.append("] fronmt: " + front +
+        " rear: " + rear  + 
+        "size: " + size +
+        " maxSize: " + maxSize
+        );
+        return sb.toString();
+    }
+
+
+    public static void main(String[] args) {
+        MyCircularQue<String> testQ = new MyCircularQue<String>(10);
+
+        testQ.add("A");
+        testQ.add("B");
+        System.out.println(testQ);
+
+
     }
 
 }
