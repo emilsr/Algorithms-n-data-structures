@@ -54,18 +54,26 @@ public class MyCircularQue<E> {
         } else if(rear == front){   // Maby this check will need to be moved...
             return false; //ToDo imp reallocate 
         }
-        data[++front] = element;
+        rear = (rear+1) % maxSize;
+        data[rear] = element;
         size++;
         return true;
     }
 
-    public E remove(){
+    public E peek(){
+        if (size==0) {
+            return null;
+        } return data[front];
+    }
+
+    public E poll(){
         if (size == 0) {
             throw new IllegalArgumentException("Que is empty...");
         }
         size--;
-        front--;
-        return data[front+1];
+        E element = data[front];
+        front = (front + 1) % maxSize;
+        return element;
     }
 
 
@@ -90,13 +98,13 @@ public class MyCircularQue<E> {
         testQ.add("A");
         testQ.add("B");
         System.out.println(testQ);
-        System.out.println("Removed: " + testQ.remove());
+        System.out.println("Removed: " + testQ.poll());
         System.out.println(testQ);
-        System.out.println("Removed: " + testQ.remove());
+        System.out.println("Removed: " + testQ.poll());
         System.out.println(testQ);
-        System.out.println("Removed: " + testQ.remove());
+        System.out.println("Removed: " + testQ.poll());
         System.out.println(testQ);
-        System.out.println("Removed: " + testQ.remove());
+        System.out.println("Removed: " + testQ.poll());
 
     }
 
