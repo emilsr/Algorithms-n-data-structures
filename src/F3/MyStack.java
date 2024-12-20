@@ -105,8 +105,6 @@ public class MyStack<E> {
         // Test pop
         System.out.println("Popped item: " + intStack.pop());
         System.out.println("Top of stack after pop: " + intStack.peek());
-
-
  */
 
 
