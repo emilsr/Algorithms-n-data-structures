@@ -76,7 +76,6 @@ public class MyCircularQue<E> {
         return element;
     }
 
-
     @Override 
     public String toString(){
         StringBuilder sb = new StringBuilder("My Que [" );
@@ -91,7 +90,6 @@ public class MyCircularQue<E> {
         return sb.toString();
     }
 
-
     public static void main(String[] args) {
         MyCircularQue<String> testQ = new MyCircularQue<String>(10);
 
@@ -105,7 +103,5 @@ public class MyCircularQue<E> {
         System.out.println("Removed: " + testQ.poll());
         System.out.println(testQ);
         System.out.println("Removed: " + testQ.poll());
-
     }
-
 }
