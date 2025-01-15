@@ -1,4 +1,4 @@
-package F3;
+package java.F3;
 
 import java.util.Arrays;
 

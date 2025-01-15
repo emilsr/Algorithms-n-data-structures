@@ -1,4 +1,4 @@
-package F1;
+package java.F1;
 import java.util.Arrays;
 
 /**

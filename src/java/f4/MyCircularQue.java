@@ -1,6 +1,4 @@
-package f4;
-
-import java.lang.reflect.Array;
+package java.f4;
 
 /**
  *  Circular array

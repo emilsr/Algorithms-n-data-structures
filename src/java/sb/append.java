@@ -1,4 +1,4 @@
-package sb;
+package java.sb;
 
 public class append {
 
