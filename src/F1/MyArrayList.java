@@ -73,7 +73,6 @@ public class MyArrayList<E> {
         data = temp;
     }
 
-
     public E get(int index) {
         if (index < 0 || index >= nrOfElements) {
             System.out.println("Index out of bounds");
