@@ -1,4 +1,4 @@
-package java.F1;
+package main.F1;
 
 public class F1Test {
 

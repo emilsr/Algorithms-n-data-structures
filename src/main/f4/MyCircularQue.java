@@ -1,4 +1,4 @@
-package java.f4;
+package main.f4;
 
 /**
  *  Circular array

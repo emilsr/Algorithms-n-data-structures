@@ -1,4 +1,4 @@
-package java.F2;
+package main.F2;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
