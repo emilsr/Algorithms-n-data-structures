@@ -2,15 +2,6 @@ package F1;
 import java.util.Arrays;
 
 /**
- *  * Make a ArrayList Class
- *  *** Requirements ***
- *  boolean add
- *  boolean remove(index)
- *  boolean remove(element)
- *  "maxSize"*2  if "nrOfElements" == "maxSize"
- *  boolean contains
- *
- *
  *  Needed Methods
  *  -- boolean add(E e)     #Done
  *  ----Add element to list return true if successful
@@ -20,10 +11,13 @@ import java.util.Arrays;
  *  ---- Return element in list at index
  *  -- int indexOf(Object o)    #Done
  *  ---- return index of an element
- *  -- E remove(int index)      #Works, need clean up
+ *  -- E remove(int index)      #Done
  *  ---- remove object at index, move all object with a higher index to the left one step
  *  -- E set(int index, E element)      #Done
  *  ---- replace an object at index with new element
+ *
+ *  ToDo add better error handling.
+ *  ToDo add unit test.
  */
 
 
@@ -82,7 +76,6 @@ public class MyArrayList<E> {
     }
 
     public void remove(int index) {
-        System.out.println("index is " + index+ " nrOfElements " + nrOfElements);
         if (index>=nrOfElements){
             System.out.println("Index: " + index + " dose not exist in list");
         }
