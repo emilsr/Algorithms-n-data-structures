@@ -41,13 +41,14 @@ public class IntList {
         if (currentSize == maxSize-1){
             return false;   //fix relocate
         }
-        if (index > 0 || index > currentSize){
+        if (index < 0 || index > currentSize){
             throw new IndexOutOfBoundsException();
         }
         for (int i = currentSize-1; i > index; i--){
-            list[i] = list[i+1];
+            list[i+1] = list[i];
         }
         list[index] = element;
+        currentSize++;
         return true;
     }
 
