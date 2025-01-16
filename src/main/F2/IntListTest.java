@@ -4,7 +4,7 @@ public class IntListTest {
     public static void main(String[] args) {
         IntList testList = new IntList(20);
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 25; i++) {
             System.out.println(testList.add(i));
         }
         System.out.println(testList);
