@@ -7,11 +7,16 @@ public class IntListTest {
         for (int i = 0; i < 20; i++) {
             System.out.println(testList.add(i));
         }
-
         System.out.println(testList);
-
         System.out.println(testList.add(9, 2));
-
+        System.out.println(testList);
+        System.out.println(testList.get(2));
+        System.out.println(testList);
+        System.out.println(testList.indexOf(9));
+        System.out.println(testList);
+        testList.set(0, 100);
+        System.out.println(testList);
+        testList.remove(0);
         System.out.println(testList);
     }
 }

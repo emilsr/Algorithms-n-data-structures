@@ -64,13 +64,12 @@ public class IntList {
         return -1;
     }
 
-    public boolean remove(int index){
-        if (currentSize == maxSize){
-            return false;   //fix relocate
-        }
+    public void remove(int index){
         indexCheck(index);
-        list[index] = Integer.parseInt(null);
-        return true;
+        for (int i = index; i < currentSize-1; i++) {
+            list[i] = list[i + 1];
+        }
+        currentSize--;
     }
 
     public void set(int index, int element) {
