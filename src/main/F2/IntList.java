@@ -17,10 +17,22 @@ package main.F2;
  */
 
 public class IntList {
+    int[] list;
+    int currentSize;
+    int maxSize;
+
     IntList(int initialCapacity){
+        this.list = new int[initialCapacity];
+        this.currentSize = 0;
+        this.maxSize = 0;
 
     }
     public boolean add(int element) {
+        if (currentSize == maxSize){
+            return false;   //Relocate
+        }
+        list[currentSize] = element;
+        currentSize++;
         return true;
     }
 
