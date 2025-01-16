@@ -27,23 +27,21 @@ public class IntList {
         this.list = new int[initialCapacity];
         this.currentSize = 0;
         this.maxSize = initialCapacity;
-
     }
+
     public boolean add(int element) {
         if (currentSize == maxSize){
-            return false;   //fix relocate
+            relocate();
         }
         list[currentSize++] = element;
         return true;
     }
 
     public boolean add(int element, int index) {
-        if (currentSize == maxSize-1){
-            return false;   //fix relocate
+        if (currentSize == maxSize){
+            relocate();
         }
-        if (index < 0 || index > currentSize){
-            throw new IndexOutOfBoundsException();
-        }
+        indexCheck(index);
         for (int i = currentSize-1; i > index; i--){
             list[i+1] = list[i];
         }
@@ -53,23 +51,50 @@ public class IntList {
     }
 
     public int get(int index) {
-        return 0;
+        indexCheck(index);
+        return list[index];
     }
 
     public int indexOf(int element) {
-        return 0;
+        for (int i = 0; i < currentSize; i++) {
+            if (list[i] == element){
+                return i;
+            }
+        }
+        return -1;
     }
 
     public boolean remove(int index){
+        if (currentSize == maxSize){
+            return false;   //fix relocate
+        }
+        indexCheck(index);
+        list[index] = Integer.parseInt(null);
         return true;
     }
 
     public void set(int index, int element) {
-
+        indexCheck(index);
+        list[index] = element;
     }
 
     public int size() {
-        return 0;
+        return currentSize;
+    }
+
+    private void indexCheck(int index){
+        if (index < 0 || index > currentSize){
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
+    private void relocate(){
+        int[] temp = new int[2 * maxSize];
+        for (int i = 0; i < currentSize; i++) {
+            temp[i] = list[i];
+        }
+        list = temp;
+        maxSize = maxSize * 2;
     }
 
     @Override
