@@ -31,7 +31,7 @@ public class IntList {
 
     public boolean add(int element) {
         if (currentSize == maxSize){
-            relocate();
+            reallocate();
         }
         list[currentSize++] = element;
         return true;
@@ -39,7 +39,7 @@ public class IntList {
 
     public boolean add(int element, int index) {
         if (currentSize == maxSize){
-            relocate();
+            reallocate();
         }
         indexCheck(index);
         for (int i = currentSize-1; i > index; i--){
@@ -87,7 +87,7 @@ public class IntList {
         }
     }
 
-    private void relocate(){
+    private void reallocate(){
         int[] temp = new int[2 * maxSize];
         for (int i = 0; i < currentSize; i++) {
             temp[i] = list[i];
