@@ -50,12 +50,12 @@ public class LinkedStack_NB7<E> implements StackInt<E> {
         }
     }
 
-    private Node<E> peek(int idex) {
+    private E peek(int idex) {
         Node<E> result = top;
         for (int i = 0; i < idex; i++) {
             result = result.next;
         }
-        return result;
+        return result.data;
     }
 
 
@@ -70,6 +70,12 @@ public class LinkedStack_NB7<E> implements StackInt<E> {
         System.out.println(stack.pop());
         System.out.println(stack.peek());
         System.out.println(stack.empty());
+        System.out.println(stack.pop());
+        System.out.println(stack.empty());
+        for (int i = 0; i<10; i++) {
+            stack.push(i);
+        }
+        System.out.println(stack.peek(2));
 
 
     }
