@@ -39,7 +39,7 @@ public class LinkedStack<E> implements StackInt<E> {
 
     @Override
     public boolean empty() {
-        return false;
+        return top == null;
     }
 
     @Override
@@ -50,4 +50,20 @@ public class LinkedStack<E> implements StackInt<E> {
             return top.data;
         }
     }
+
+
+    public static void main(String[] args) {
+        LinkedStack stack = new LinkedStack();
+        System.out.println(stack.empty());
+
+        System.out.println(stack.push(1));
+        System.out.println(stack.push(2));
+        System.out.println(stack.pop());
+        System.out.println(stack.peek());
+        System.out.println(stack.empty());
+
+
+    }
+
+
 }
