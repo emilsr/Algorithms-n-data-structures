@@ -58,6 +58,18 @@ public class LinkedStack_NB7<E> implements StackInt<E> {
         return result.data;
     }
 
+    public int size() {
+        if (empty()) {
+            throw new EmptyStackException();
+        }
+        int size = 0;
+        Node<E> nextElement = top;
+        while (nextElement != null){
+            nextElement = nextElement.next;
+            size++;
+        }
+        return size;
+    }
 
     //ToDo size(), peek(n), och flush()
 
@@ -75,7 +87,7 @@ public class LinkedStack_NB7<E> implements StackInt<E> {
         for (int i = 0; i<10; i++) {
             stack.push(i);
         }
-        System.out.println(stack.peek(2));
+        System.out.println(stack.peek(0));
 
 
     }
