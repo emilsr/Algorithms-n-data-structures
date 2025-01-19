@@ -2,7 +2,7 @@ package main.F3;
 
 import java.util.EmptyStackException;
 
-public class LinkedStack<E> implements StackInt<E> {
+public class LinkedStack_NB7<E> implements StackInt<E> {
 
     private static class Node<E> {
         private E data;
@@ -15,7 +15,7 @@ public class LinkedStack<E> implements StackInt<E> {
     }
     private Node<E> top;
 
-    public LinkedStack() {
+    public LinkedStack_NB7() {
         top = null;
     }
 
@@ -24,7 +24,6 @@ public class LinkedStack<E> implements StackInt<E> {
         top = new Node<E>(obj, top);
         return obj;
     }
-
 
     @Override
     public E pop() {
@@ -51,9 +50,19 @@ public class LinkedStack<E> implements StackInt<E> {
         }
     }
 
+    private Node<E> peek(int idex) {
+        Node<E> result = top;
+        for (int i = 0; i < idex; i++) {
+            result = result.next;
+        }
+        return result;
+    }
+
+
+    //ToDo size(), peek(n), och flush()
 
     public static void main(String[] args) {
-        LinkedStack stack = new LinkedStack();
+        LinkedStack_NB7 stack = new LinkedStack_NB7();
         System.out.println(stack.empty());
 
         System.out.println(stack.push(1));
