@@ -1,11 +1,11 @@
 package main.F3;
 import java.util.ArrayList;
 
-public class ArrayListStack<E> implements StackInt<E> {
+public class ArrayListStack_NB5<E> implements StackInt<E> {
     int stackPointer;
     ArrayList<E> stack;
 
-    ArrayListStack(){
+    ArrayListStack_NB5(){
         this.stackPointer = 0;
         this.stack = new ArrayList<>();
     }
@@ -37,7 +37,7 @@ public class ArrayListStack<E> implements StackInt<E> {
 
 
     public static void main(String[] args) {
-        ArrayListStack stack = new ArrayListStack();
+        ArrayListStack_NB5 stack = new ArrayListStack_NB5();
         System.out.println(stack.push("Hello"));
         System.out.println(stack.peek());
         System.out.println(stack.empty());
