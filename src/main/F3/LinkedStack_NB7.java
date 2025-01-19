@@ -87,27 +87,4 @@ public class LinkedStack_NB7<E> implements StackInt<E> {
         }
         return lastElement;
     }
-
-    //ToDo size(), peek(n), och flush()
-
-    public static void main(String[] args) {
-        LinkedStack_NB7 stack = new LinkedStack_NB7();
-        System.out.println(stack.empty());
-
-        System.out.println(stack.push(1));
-        System.out.println(stack.push(2));
-        System.out.println(stack.pop());
-        System.out.println(stack.peek());
-        System.out.println(stack.empty());
-        System.out.println(stack.pop());
-        System.out.println(stack.empty());
-        for (int i = 0; i<10; i++) {
-            stack.push(i);
-        }
-        System.out.println(stack.peek(0));
-
-
-    }
-
-
 }
