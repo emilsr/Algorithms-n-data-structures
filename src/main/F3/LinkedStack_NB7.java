@@ -50,12 +50,15 @@ public class LinkedStack_NB7<E> implements StackInt<E> {
         }
     }
 
-    private E peek(int idex) {
-        Node<E> result = top;
-        for (int i = 0; i < idex; i++) {
-            result = result.next;
+    public E peek(int index){
+        if (index < 0 || index >= size()){
+            throw new IndexOutOfBoundsException();
         }
-        return result.data;
+        Node<E> current = top;
+        for (int i = 0; i < index; i++){
+            current = current.next;
+        }
+        return current.data;
     }
 
     public int size() {
@@ -69,6 +72,20 @@ public class LinkedStack_NB7<E> implements StackInt<E> {
             size++;
         }
         return size;
+    }
+
+    public E flush() {
+        if (empty()) {
+            throw new EmptyStackException();
+        }
+        E lastElement = top.data;
+        while (top != null) {
+            lastElement = top.data;
+            Node<E> temp = top.next;
+            top.next = null;
+            top = temp;
+        }
+        return lastElement;
     }
 
     //ToDo size(), peek(n), och flush()
