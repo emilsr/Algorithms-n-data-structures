@@ -34,6 +34,8 @@ public class ArrayListStack<E> implements StackInt<E> {
         return stackPointer == 0;
     }
 
+
+
     public static void main(String[] args) {
         ArrayListStack stack = new ArrayListStack();
         System.out.println(stack.push("Hello"));
