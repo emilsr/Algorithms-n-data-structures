@@ -30,7 +30,7 @@ public class ArrayListStack<E> implements StackInt<E> {
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean empty() {
         return stackPointer == 0;
     }
 
@@ -38,9 +38,9 @@ public class ArrayListStack<E> implements StackInt<E> {
         ArrayListStack stack = new ArrayListStack();
         System.out.println(stack.push("Hello"));
         System.out.println(stack.peek());
-        System.out.println(stack.isEmpty());
+        System.out.println(stack.empty());
         System.out.println(stack.pop());
-        System.out.println(stack.isEmpty());
+        System.out.println(stack.empty());
         for (int i = 0; i<20; i++){
             System.out.println(stack.push(i));
         }
