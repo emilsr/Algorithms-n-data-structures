@@ -2,34 +2,36 @@ package main.F3;
 import java.util.ArrayList;
 
 public class ArrayListStack<E> implements StackInt<E> {
-    int currentSize;
+    int stackPointer;
     ArrayList<E> stack;
 
     ArrayListStack(){
-        this.currentSize = 0;
+        this.stackPointer = 0;
         this.stack = new ArrayList<>();
     }
 
     @Override
     public E push(E obj) {
         stack.add(obj);
-        currentSize++;
+        stackPointer++;
         return obj;
     }
 
     @Override
     public E peek() {
-        return stack.get(currentSize - 1);
+        if (stackPointer == 0)  throw new IllegalStateException("Stack is empty");
+        return stack.get(stackPointer - 1);
     }
 
     @Override
     public E pop() {
-        return stack.remove(--currentSize);
+        if (stackPointer == 0)  throw new IllegalStateException("Stack is empty");
+        return stack.remove(--stackPointer);
     }
 
     @Override
     public boolean isEmpty() {
-        return currentSize == 0;
+        return stackPointer == 0;
     }
 
     public static void main(String[] args) {
