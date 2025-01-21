@@ -43,8 +43,8 @@ public class NB8_1<E>{
         data= Arrays.copyOf(data,maxSize);
     }
 
-    public int getSize(){ // added for testing
-        return size;
+    public int getMaxSize(){ // added for testing
+        return maxSize;
     }
 
     @Override
