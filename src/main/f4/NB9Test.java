@@ -3,18 +3,19 @@ package main.f4;
 public class NB9Test {
     public static void main(String[] args) {
         NB9<Integer> queue = new NB9<>();
-        queue.enqueue(1);
-        queue.enqueue(2);
-        queue.enqueue(3);
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Add " + i + " to queue....."+ queue.enqueue(i));
+        }
+        System.out.println(queue);
 
-        System.out.println(queue); // [1 -> 2 -> 3]
+        for (int i = queue.size(); i != 0; i--) {
+            System.out.println("Removing item from queue....."+ queue.dequeue());
+        }
 
-        System.out.println("Dequeued: " + queue.dequeue()); // Dequeued: 1
-        System.out.println(queue); // [2 -> 3]
+        System.out.println(queue);
 
-        queue.enqueue(4);
-        System.out.println(queue); // [2 -> 3 -> 4]
-
-        System.out.println("Size: " + queue.size()); // Size: 3
+        System.out.println("Size: " + queue.size());
+        System.out.println("Remove item from empty queue, should throw");
+        queue.dequeue();
     }
 }
