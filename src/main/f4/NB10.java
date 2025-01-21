@@ -23,31 +23,44 @@ public class NB10<E> {
         size = 0;
     }
 
-    public boolean enqueue(E e){
+    public E pollFirst(){
+        if(head == null) return null;
+        E data = head.data;
+        head = head.next;
+        if (head == null) tail = null;
+        else head.prev = null;
+        size--;
+        return data;
+    }
+
+
+    public E pollLast(){
+        if(tail == null) return null;
+        E data = tail.data;
+        tail = tail.prev;
+        if (tail == null) head = null;
+        else tail.next = null;
+        size--;
+        return data;
+    }
+
+    public boolean offerFirst(E e){
         Node<E> newNode = new Node<E>(e, null, tail);
-        if(tail == null){
-            head = newNode;
-        } else {
-            tail.next = newNode;
-        }
+        if(tail == null) head = newNode;
+        else tail.next = newNode;
         tail = newNode;
         size++;
         return true;
     }
+    public boolean offerLast(E e){
+        Node<E> newNode = new Node<E>(e, null, tail);
+        if(tail == null) head = newNode;
+        return false;
 
-    public E dequeue(){
-        if(head == null){
-            throw new IllegalStateException("Queue is empty");
-        }
-        E data = head.data;
-        head = head.next;
-        if(head == null){
-            tail = null;
-        } else {
-            head.prev = null;
-        }
-        size--;
-        return data;
+    }
+
+    public boolean empty(){
+        return size == 0;
     }
 
     public int size(){
