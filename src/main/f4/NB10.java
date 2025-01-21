@@ -45,17 +45,21 @@ public class NB10<E> {
     }
 
     public boolean offerFirst(E e){
+        Node<E> newNode = new Node<E>(e, head, null);
+        if(head == null) tail = newNode;
+        else head.prev = newNode;
+        head = newNode;
+        size++;
+        return true;
+    }
+
+    public boolean offerLast(E e){
         Node<E> newNode = new Node<E>(e, null, tail);
         if(tail == null) head = newNode;
         else tail.next = newNode;
         tail = newNode;
         size++;
         return true;
-    }
-    public boolean offerLast(E e){
-        Node<E> newNode = new Node<E>(e, null, tail);
-        if(tail == null) head = newNode;
-        return false;
 
     }
 
