@@ -23,13 +23,13 @@ public class NB8_1<E>{
     }
 
     public E peek(){
-        if(size==0) return null;
+        if(size==0) throw new IllegalStateException("Queue is empty");
         return data[front];
     }
 
     public E poll(){
         if(size==0){
-            return null;
+            throw new IllegalStateException("Queue is empty");
         }else{
             size--;
             E element = data[front];
