@@ -43,6 +43,14 @@ public class NB8_1<E>{
         data= Arrays.copyOf(data,maxSize);
     }
 
-
-
+    @Override
+    public String toString() {
+        return "NB8_1{" +
+                "front=" + front +
+                ", rear=" + rear +
+                ", size=" + size +
+                ", maxSize=" + maxSize +
+                ", data=" + Arrays.toString(data) +
+                '}';
+    }
 }
