@@ -45,7 +45,11 @@ public class NB8_1<E>{
 
     public int getMaxSize(){ // added for testing
         return maxSize;
-    }
+    }   // Here for testing
+
+    public int getSize(){ // added for testing
+        return size;
+    }         // Here for testing
 
     @Override
     public String toString() {
