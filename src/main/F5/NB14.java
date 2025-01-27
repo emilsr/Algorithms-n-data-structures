@@ -15,28 +15,32 @@ package main.F5;
  */
 
 public class NB14 {
-
-    public int points; 
-    public int nrOfTurns;
-
-
-    public static int solvePoints(int target){
-        return solvePoints(1, target,0);
-    }
-
-    public static int solvePoints(int points, int target, int coinsUsed){
-        if (points == target) {
-            return target;
+    public static int solvePoints(int points, int target){
+        if (points > target) {
+            return -1;
         }
-        int fiveCrown = solvePoints(points+4, target,coinsUsed+5);
+        if (points == target) {
+            return 0;
+        }
+        int fiveCrown = solvePoints(points+4, target);
+        int tenCrown = solvePoints(points*3, target);
 
-        int tenCrown = solvePoints(points*3, target,coinsUsed+10);
-
-        return Math.min(fiveCrown, tenCrown);
+        if (fiveCrown < 0 && tenCrown < 0) {
+            return -1;
+        }
+        if (fiveCrown < 0){
+            return tenCrown+10;
+        }
+        if (tenCrown < 0){
+            return fiveCrown+5;
+        }
+        return Math.min(fiveCrown+5, tenCrown+10);
     }
 
     public static void main(String[] args) {
-        
+        for (int i = 0; i < 109; i++) {
+            System.out.println("Points: " + i + " Coins: " + solvePoints(1, i));
+        }
     }
 
     
