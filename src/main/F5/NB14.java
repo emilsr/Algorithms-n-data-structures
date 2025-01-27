@@ -21,18 +21,24 @@ public class NB14 {
 
 
     public static int solvePoints(int target){
-        return solvePoints(1, target);
+        return solvePoints(1, target,0);
     }
 
-    public static int solvePoints(int points, int target){
+    public static int solvePoints(int points, int target, int coinsUsed){
         if (points == target) {
             return target;
         }
+        int fiveCrown = solvePoints(points+4, target,coinsUsed+5);
 
-        
+        int tenCrown = solvePoints(points*3, target,coinsUsed+10);
 
-        return 0;
+        return Math.min(fiveCrown, tenCrown);
     }
+
+    public static void main(String[] args) {
+        
+    }
+
     
     
 
