@@ -42,8 +42,4 @@ public class NB14 {
             System.out.println("Points: " + i + " Coins: " + solvePoints(1, i));
         }
     }
-
-    
-    
-
 }
