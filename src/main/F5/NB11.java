@@ -8,7 +8,6 @@ public class NB11 {
 
     static public int findLargestInt(int[] array){
         return findLargestInt(array, 0, -1);
-
     } 
 
     static public int findLargestInt(int[] array, int index, int currentLargest){
