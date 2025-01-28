@@ -9,11 +9,11 @@ public class NB12 {
         return xByPowerOfN(x, n, 1);
     }
 
-    public static int xByPowerOfN(int x, int n, int curent){
-        if (curent == n ) {
+    public static int xByPowerOfN(int x, int n, int current){
+        if (current == n ) {
             return x;
         }
-        return x = x * xByPowerOfN(x, n, curent+1);
+        return x * xByPowerOfN(x, n, current+1);
     }
 
     public static int xByPowerOfNIterator(int x, int n){
