@@ -38,7 +38,7 @@ public class NB14 {
     }
 
     public static void main(String[] args) {
-        for (int i = 0; i < 109; i++) {
+        for (int i = 0; i < 110; i++) {
             System.out.println("Points: " + i + " Coins: " + solvePoints(1, i));
         }
     }
