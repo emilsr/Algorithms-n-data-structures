@@ -1,6 +1,5 @@
 package main.F5;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 //Skriv en rekursiv static metod som hittar största värdet i en array av ints.
