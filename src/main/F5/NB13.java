@@ -3,6 +3,12 @@ package main.F5;
 public class NB13 {
 
     public static double rot(double n, double a, double e){
+        if (n < 0){
+            throw new ArithmeticException("n < 0");
+        }
+        if (n == 0){
+            return 0;
+        }
         double temp = Math.abs(a*a - n);
         if (temp < e) {
             System.out.println("temp: " + temp);
