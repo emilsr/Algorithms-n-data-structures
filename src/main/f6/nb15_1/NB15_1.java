@@ -82,7 +82,7 @@ public class NB15_1 {
         Queue<Integer> tradeQueue = new LinkedList<>(); 
         for(int i = 0; i < 15; i++){
             if (!state.win()) {
-                
+                tradeQueue.offer(tradeMarble(state, nrOftrades+1));
             }
         }
 
