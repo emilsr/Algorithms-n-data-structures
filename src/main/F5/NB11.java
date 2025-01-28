@@ -1,6 +1,7 @@
 package main.F5;
 
 import java.lang.reflect.Array;
+import java.util.Arrays;
 
 //Skriv en rekursiv static metod som hittar största värdet i en array av ints.
 
@@ -24,7 +25,7 @@ public class NB11 {
 
     public static void main(String[] args)  {
         int[] array = {10, 6, 4, 9, 12, 56, 0}; 
-        System.out.println("Array: " + array);
+        System.out.println("Array: " + Arrays.toString(array));
         System.out.println("Largest int in array: " +  findLargestInt(array));
 
         
