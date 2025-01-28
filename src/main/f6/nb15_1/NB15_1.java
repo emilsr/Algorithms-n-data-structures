@@ -1,5 +1,10 @@
 package main.f6.nb15_1;
 
+import java.lang.Thread.State;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * En lek med kulor går till på följande sätt. Man börjar med ett visst antal röda, vita och blå kulor. I en
  * låda ligger obegränsat med röda, vita och blå kulor. Man ska nu se till att växla sina kulor med
@@ -26,9 +31,63 @@ package main.f6.nb15_1;
 
 public class NB15_1 {
 
+    public class State<E>{
+        int blue;
+        int red;
+        int white;
+        
+        State(int b, int r, int w){
+            this.blue = b;
+            this.red = r;
+            this.white = w;
+        }
+
+        public void tradeBlue(){
+            if (blue>0) {
+                blue--;
+                red = red + 3;
+                white++;
+            }
+        }
+
+        public void tradeRed(){
+            if (red>0) {
+                red--;
+                blue++;
+                white = white+5;
+            }
+        }
+
+        public void tradeWhite(){
+            if (white > 0) {
+                white--;
+                blue = blue + 2;
+                red = red + 4;
+                
+            }
+        }
+
+        public boolean win(){
+            if (red == white && red == blue) {
+                return true;
+            }
+            return false;
+        }
+    }
+
     public static void main(String[] args) {}
 
-    public static int tradeMarble(int red, int blue, int white ){
+    public static <E> int tradeMarble(State state, int nrOftrades){
+
+        Queue<Integer> tradeQueue = new LinkedList<>(); 
+        for(int i = 0; i < 15; i++){
+            if (!state.win()) {
+                
+            }
+        }
+
+
+
         return 0;
     }
 
