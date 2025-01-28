@@ -31,64 +31,39 @@ import java.util.Queue;
 
 public class NB15_1 {
 
-    public class State<E>{
+    public class State{
         int blue;
-        int red;
         int white;
+        int red;
+        int trades;
         
-        State(int b, int r, int w){
+        State(int b, int r, int w, int t){
             this.blue = b;
-            this.red = r;
             this.white = w;
-        }
-
-        public void tradeBlue(){
-            if (blue>0) {
-                blue--;
-                red = red + 3;
-                white++;
-            }
-        }
-
-        public void tradeRed(){
-            if (red>0) {
-                red--;
-                blue++;
-                white = white+5;
-            }
-        }
-
-        public void tradeWhite(){
-            if (white > 0) {
-                white--;
-                blue = blue + 2;
-                red = red + 4;
-                
-            }
-        }
-
-        public boolean win(){
-            if (red == white && red == blue) {
-                return true;
-            }
-            return false;
+            this.red = r;
+            this.trades = t;
         }
     }
 
     public static void main(String[] args) {}
 
-    public static <E> int tradeMarble(State state, int nrOftrades){
+    public static <E> int tradeMarble(int b, int w, int r){
 
-        Queue<Integer> tradeQueue = new LinkedList<>(); 
-        for(int i = 0; i < 15; i++){
-            if (!state.win()) {
-                tradeQueue.offer(tradeMarble(state, nrOftrades+1));
-            }
+        Queue<State> tradeQueue = new LinkedList<>(); 
+        State gameState = new State(b, w, r, 0);
+        while (!winCon(gameState) && gameState.trades < 15) {
+            tradeQueue.offer(new State(gameState.blue - 1, gameState.white + 3, gameState.red + 1, gameState.trades + 1));
+            tradeQueue.offer(new State(gameState.blue + 3, gameState.white - 1, gameState.red + 4, gameState.trades + 1));
+            tradeQueue.offer(new State(gameState.blue + 2, gameState.white + 1, gameState.red - 1, gameState.trades + 1));
+            tradeQueue.poll();
         }
+        return gameState.trades;
+    }
 
-
-
-        return 0;
+    private static boolean winCon(State s){
+        if (s.red == s.white && s.red == s.blue) {
+            return true;
+        } return false;
     }
 
 }
