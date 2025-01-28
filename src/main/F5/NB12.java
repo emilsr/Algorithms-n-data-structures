@@ -24,7 +24,7 @@ public class NB12 {
     }
 
     public static void main(String[] args){
-        System.out.println(xByPowerOfN(3, 4));
+        System.out.println(xByPowerOfN(0, 2));
         System.out.println(xByPowerOfNIterator(3, 4));
 
     }
