@@ -31,13 +31,13 @@ import java.util.Queue;
 
 public class NB15_1 {
 
-    public class State{
+    public static class State{
         int blue;
         int white;
         int red;
         int trades;
         
-        State(int b, int r, int w, int t){
+        State(int b, int w, int r, int t){
             this.blue = b;
             this.white = w;
             this.red = r;
@@ -45,17 +45,15 @@ public class NB15_1 {
         }
     }
 
-    public static void main(String[] args) {}
 
-    public static <E> int tradeMarble(int b, int w, int r){
-
+    public static int tradeMarble(int b, int w, int r){
         Queue<State> tradeQueue = new LinkedList<>(); 
         State gameState = new State(b, w, r, 0);
         while (!winCon(gameState) && gameState.trades < 15) {
             tradeQueue.offer(new State(gameState.blue - 1, gameState.white + 3, gameState.red + 1, gameState.trades + 1));
             tradeQueue.offer(new State(gameState.blue + 3, gameState.white - 1, gameState.red + 4, gameState.trades + 1));
             tradeQueue.offer(new State(gameState.blue + 2, gameState.white + 1, gameState.red - 1, gameState.trades + 1));
-            tradeQueue.poll();
+            gameState = tradeQueue.poll();
         }
         return gameState.trades;
     }
@@ -64,6 +62,13 @@ public class NB15_1 {
         if (s.red == s.white && s.red == s.blue) {
             return true;
         } return false;
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(tradeMarble(5, 1, 3));
+        System.out.println(tradeMarble(2, 1, 3));
+        System.out.println(tradeMarble(22, 22, 13));
     }
 
 }
