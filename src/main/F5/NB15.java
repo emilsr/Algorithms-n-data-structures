@@ -9,13 +9,50 @@ package main.F5;
 
 public class NB15 {
 
+    // Wrapper-metod för att konvertera en binär sträng till ett heltal
     public static int binaryToInt(String binary) {
-        if (binary.length() == 0){
-            return 0;
+        return binaryToInt(binary, binary.length() - 1, 0);
+    }
+
+    // Rekursiv metod för att omvandla en binär sträng till ett heltal
+    private static int binaryToInt(String binary, int index, int result) {
+        if (index < 0) {
+            return result;
         }
-        else if (binary.length() == 1) return Integer.parseInt(binary);
 
+        int bit = binary.charAt(index) - '0'; // Omvandla tecken till siffra
+        result += bit * Math.pow(2, binary.length() - 1 - index);
+        return binaryToInt(binary, index - 1, result);
+    }
 
-        return 0;
+    // Wrapper-metod för att konvertera ett heltal till en binär sträng
+    public static String intToBinary(int number) {
+        if (number == 0) {
+            return "0";
+        }
+        return intToBinary(number, "");
+    }
+
+    // Rekursiv metod för att omvandla ett heltal till en binär sträng
+    private static String intToBinary(int number, String binary) {
+        if (number == 0) {
+            return binary;
+        }
+
+        binary = (number % 2) + binary; // Lägger till den aktuella biten
+        return intToBinary(number / 2, binary);
+    }
+
+    // Main-metod för att testa implementationen
+    public static void main(String[] args) {
+        // Testa binaryToInt
+        String binaryStr = "1011";
+        int decimalValue = binaryToInt(binaryStr);
+        System.out.println("Binary " + binaryStr + " to Decimal: " + decimalValue); // Output: 11
+
+        // Testa intToBinary
+        int number = 11;
+        String binaryRepresentation = intToBinary(number);
+        System.out.println("Decimal " + number + " to Binary: " + binaryRepresentation); // Output: 1011
     }
 }
