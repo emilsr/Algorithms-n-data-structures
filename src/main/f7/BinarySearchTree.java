@@ -100,6 +100,14 @@ public class BinarySearchTree <E extends Comparable<E>> {
                 } else if (node.right == null) {
                     return node.left;
                 } else {
+                    Node<E> nodeToMove = node.right;
+                    Node<E> parentNodeToMove = node;
+                    if (nodeToMove.left != null) {
+
+                        nodeToMove.left = node.left;
+                        return nodeToMove;
+                    }
+
 
                 }
             }
