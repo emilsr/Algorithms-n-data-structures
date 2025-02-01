@@ -102,13 +102,18 @@ public class BinarySearchTree <E extends Comparable<E>> {
                 } else {
                     Node<E> nodeToMove = node.right;
                     Node<E> parentNodeToMove = node;
-                    if (nodeToMove.left != null) {
+                    if (nodeToMove.left == null) {
 
                         nodeToMove.left = node.left;
                         return nodeToMove;
                     }
-
-
+                    while (nodeToMove.left != null) {
+                        parentNodeToMove = nodeToMove;
+                        nodeToMove = nodeToMove.left;
+                    }
+                    parentNodeToMove.left = nodeToMove.right;
+                    node.data= nodeToMove.data;
+                    return node;
                 }
             }
         }
@@ -141,6 +146,10 @@ public class BinarySearchTree <E extends Comparable<E>> {
         System.out.println(tree.find(70));
         System.out.println(tree.find(9));
         System.out.println(tree.find(0));
+        tree.delete(0);
+        tree.delete(6);
+        tree.delete(9);
+        System.out.println(tree);
     }
 
 }
