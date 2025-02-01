@@ -55,6 +55,27 @@ public class BinarySearchTree <E extends Comparable<E>> {
         return true;
     }
 
+    public E find(E target) {
+        return find(target, root);
+    }
+
+    // this is a bit different from the lecure, but I will think this should work the same way. it's a bit uglier.
+    //ToDo test to make sure it works, and after remake it to be easier to read.
+    private E find(E target, Node<E> currentNode) {
+        if (currentNode.data.equals(target)) {
+            return currentNode.data;
+        } else if (currentNode.data.compareTo(target) < 0) {
+            if (currentNode.left != null) {
+                return find(target, currentNode.left);
+            }
+        } else if (currentNode.data.compareTo(target) > 0) {
+            if (currentNode.right != null) {
+                return find(target, currentNode.right);
+            }
+        }
+        return null;
+    }
+
     // Will revers through the BST "in order", meaning starting with left tree, current node and then right tree.
     public void inOrder(Node<E> node, StringBuilder sb) {
         if (node != null) {
