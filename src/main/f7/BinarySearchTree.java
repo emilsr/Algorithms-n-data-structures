@@ -80,7 +80,7 @@ public class BinarySearchTree <E extends Comparable<E>> {
     public void inOrder(Node<E> node, StringBuilder sb) {
         if (node != null) {
             inOrder(node.left, sb);
-            sb.append(node.data);
+            sb.append(node.data + ", ");
             inOrder(node.right, sb);
         }
     }
@@ -89,6 +89,19 @@ public class BinarySearchTree <E extends Comparable<E>> {
         StringBuilder sb = new StringBuilder();
         inOrder(root, sb);
         return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        BinarySearchTree tree = new BinarySearchTree();
+        for (int i = 0; i < 10; i++) {
+            tree.add(i);
+        }
+
+        System.out.println(tree);
+        System.out.println(tree.find(2));
+        System.out.println(tree.find(70));
+        System.out.println(tree.find(9));
+        System.out.println(tree.find(0));
     }
 
 }
