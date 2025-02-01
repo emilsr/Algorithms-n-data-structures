@@ -21,6 +21,7 @@ public class BinarySearchTree <E extends Comparable<E>> {
     }
 
     private Node<E> root;
+    private E deletedData = null;
 
     public BinarySearchTree() {
         root = null;
@@ -74,6 +75,36 @@ public class BinarySearchTree <E extends Comparable<E>> {
             }
         }
         return null;
+    }
+
+    public E delete(E target) {
+        root = delete(target, root);
+        return deletedData;
+    }
+
+    private Node<E> delete(E target, Node<E> node) {
+        if (node == null) {
+            deletedData = null;
+            return null;
+        } else {
+            if (target.compareTo(node.data) < 0) {
+                node.left = delete(target, node.left);
+                return node;
+            } else if (target.compareTo(node.data) > 0) {
+                node.right = delete(target, node.right);
+                return node;
+            } else {
+                deletedData = node.data;
+                if (node.left == null) {
+                    return node.right;
+                } else if (node.right == null) {
+                    return node.left;
+                } else {
+
+                }
+            }
+        }
+
     }
 
     // Will revers through the BST "in order", meaning starting with left tree, current node and then right tree.
