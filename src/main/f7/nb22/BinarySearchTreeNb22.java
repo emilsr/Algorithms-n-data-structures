@@ -119,6 +119,22 @@ public class BinarySearchTreeNb22<E extends Comparable<E>> {
         }
 
     }
+    //ToDo Skriv funktioner som traverserar trädet med preOrder och postOrder
+    public void preOrder(Node<E> node, StringBuilder sb) {
+        if (node != null) {
+            sb.append(": " + node.toString());
+            preOrder(node.left, sb);
+            preOrder(node.right, sb);
+        }
+    }
+
+    public void postOrder(Node<E> node, StringBuilder sb) {
+        if (node != null) {
+            postOrder(node.left, sb);
+            postOrder(node.right, sb);
+            sb.append(": " + node.toString());
+        }
+    }
 
     // Will revers through the BST "in order", meaning starting with left tree, current node and then right tree.
     public void inOrder(Node<E> node, StringBuilder sb) {
@@ -132,6 +148,18 @@ public class BinarySearchTreeNb22<E extends Comparable<E>> {
     public String toString(){
         StringBuilder sb = new StringBuilder();
         inOrder(root, sb);
+        return sb.toString();
+    }
+
+    public String toString(String order){
+        StringBuilder sb = new StringBuilder();
+        if (order == "preOrder"){
+            preOrder(root, sb);
+        } else if (order == "postOrder"){
+            postOrder(root, sb);
+        } else {
+            inOrder(root, sb);
+        }
         return sb.toString();
     }
 
