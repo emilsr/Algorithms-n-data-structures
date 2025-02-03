@@ -156,4 +156,51 @@ public class BinarySearchTree<E extends Comparable<E>> {
         }
     }
 
+    /**
+     * Utgå ifrån vårt binära sökträd från föreläsningen. Skriv om sökfunktionen så att den är iterativ istället
+     * för rekursiv. Skriv två funktioner maxRec och maxIt som returnerar det största värdet i ett binärt
+     * sökträd. Den ena rekursiv och den andra iterativ. Alla funktioner ska vara O(logn).
+     */
+    public E findRec(E target) {
+        return findRec(target, root);
+    }
+
+    public E findRec(E target, Node<E> node) {
+        int i = 0;
+        while (!node.data.equals(target) && i<20) {
+            if (target.compareTo(node.data) < 0 && node.left != null) {
+                node = node.left;
+            } else if (target.compareTo(node.data ) > 0 && node.left != null) {
+                node = node.right;
+            }
+            i++;
+        }
+        if (node.data.equals(target)) {
+            return node.data;
+        }
+        return null;
+    }
+
+    public Node<E> maxit() {
+        return maxit(root);
+    }
+
+    public Node<E> maxit(Node<E> node) {
+        while (node.right != null) {
+            node = node.right;
+        }
+        return node;
+    }
+
+    public Node<E> maxRec(){
+        return maxRec(root);
+    }
+
+    public Node<E> maxRec(Node<E> node) {
+        if (node.right != null) {
+            return maxRec(node.right);
+        }
+        return node;
+    }
+
 }
