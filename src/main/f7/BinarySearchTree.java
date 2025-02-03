@@ -37,20 +37,20 @@ public class BinarySearchTree <E extends Comparable<E>> {
 
     }
 
-    private boolean add(E data, Node<E> currentNode) {
-        if (currentNode.data.compareTo(data) == 0) {
+    private boolean add(E data, Node<E> node) {
+        if (data.compareTo(node.data) == 0) {
             return false;
-        } else if (currentNode.data.compareTo(data) < 0) {
-            if (currentNode.left == null) {
-                currentNode.left = new Node<>(data);
+        } else if (data.compareTo(node.data) < 0) {
+            if (node.left == null) {
+                node.left = new Node<>(data);
             } else {
-                add(data, currentNode.left);
+                add(data, node.left);
             }
-        } else if (currentNode.data.compareTo(data) > 0) {
-            if (currentNode.right == null) {
-                currentNode.right = new Node<>(data);
+        } else if (data.compareTo(node.data) > 0) {
+            if (node.right == null) {
+                node.right = new Node<>(data);
             } else {
-                add(data, currentNode.right);
+                add(data, node.right);
             }
         }
         return true;
@@ -124,7 +124,7 @@ public class BinarySearchTree <E extends Comparable<E>> {
     public void inOrder(Node<E> node, StringBuilder sb) {
         if (node != null) {
             inOrder(node.left, sb);
-            sb.append(node.data + ", ");
+            sb.append(": " + node.toString());
             inOrder(node.right, sb);
         }
     }
@@ -136,6 +136,7 @@ public class BinarySearchTree <E extends Comparable<E>> {
     }
 
     public static void main(String[] args) {
+
         BinarySearchTree tree = new BinarySearchTree();
         for (int i = 0; i < 10; i++) {
             tree.add(i);
@@ -150,6 +151,7 @@ public class BinarySearchTree <E extends Comparable<E>> {
         tree.delete(6);
         tree.delete(9);
         System.out.println(tree);
+
     }
 
 }
