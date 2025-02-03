@@ -135,23 +135,25 @@ public class BinarySearchTree <E extends Comparable<E>> {
         return sb.toString();
     }
 
-    public static void main(String[] args) {
+    public String printAsTree() {
+        StringBuilder sb = new StringBuilder();
+        printAsTree(root, sb, "", true);
+        return sb.toString();
+    }
 
-        BinarySearchTree tree = new BinarySearchTree();
-        for (int i = 0; i < 10; i++) {
-            tree.add(i);
+    private void printAsTree(Node<E> node, StringBuilder sb, String prefix, boolean isTail) {
+        if (node != null) {
+            sb.append(prefix).append(isTail ? "└── " : "├── ").append(node.data).append("\n");
+            String newPrefix = prefix + (isTail ? "    " : "│   ");
+            if (node.right != null || node.left != null) {
+                if (node.right != null) {
+                    printAsTree(node.right, sb, newPrefix, node.left == null);
+                }
+                if (node.left != null) {
+                    printAsTree(node.left, sb, newPrefix, true);
+                }
+            }
         }
-
-        System.out.println(tree);
-        System.out.println(tree.find(2));
-        System.out.println(tree.find(70));
-        System.out.println(tree.find(9));
-        System.out.println(tree.find(0));
-        tree.delete(0);
-        tree.delete(6);
-        tree.delete(9);
-        System.out.println(tree);
-
     }
 
 }
