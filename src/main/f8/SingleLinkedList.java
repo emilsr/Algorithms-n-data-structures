@@ -6,22 +6,6 @@ import java.util.Spliterator;
 import java.util.function.Consumer;
 
 public class SingleLinkedList<E> implements Iterable<E> {
-
-    @Override
-    public Iterator<E> iterator() {
-        return null;
-    }
-
-    @Override
-    public void forEach(Consumer<? super E> action) {
-        Iterable.super.forEach(action);
-    }
-
-    @Override
-    public Spliterator<E> spliterator() {
-        return Iterable.super.spliterator();
-    }
-
     private static class Node<E> {
         private E data;
         private Node<E> next;
@@ -31,41 +15,6 @@ public class SingleLinkedList<E> implements Iterable<E> {
             this.next = next;
         }
     }
-
-    private class Itr implements Iterator<E> {
-        Node<E> current;
-
-        public Itr(Node<E> start) {
-            current = start;
-        }
-
-        @Override
-        public boolean hasNext() {
-            return current != null;
-        }
-
-        @Override
-        public E next() {
-            if (current == null){
-                throw new NoSuchElementException();
-            }
-            if (!hasNext())
-                return null;
-            current = current.next;
-            return (E) current;
-        }
-
-        @Override
-        public void remove() {
-            Iterator.super.remove();
-        }
-
-        @Override
-        public void forEachRemaining(Consumer<? super E> action) {
-            Iterator.super.forEachRemaining(action);
-        }
-    }
-
 
     private Node<E> head;
     private int size = 0;
@@ -77,7 +26,7 @@ public class SingleLinkedList<E> implements Iterable<E> {
 
     public void add(int index, E item){
         if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         }
         if (index == 0){
             addFirst(item);
@@ -103,6 +52,9 @@ public class SingleLinkedList<E> implements Iterable<E> {
     }
 
     private Node<E> getNode(int index){
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
         Node<E> node = head;
         for (int i = 0; i < index && node != null; i++) {
             node = node.next;
@@ -139,4 +91,36 @@ public class SingleLinkedList<E> implements Iterable<E> {
         sb.append("]");
         return sb.toString();
     }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            Node<E> current = head;
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public E next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException("No more elements");
+                }
+                E data = current.data;
+                current = current.next;
+                return data;
+            }
+        };
+    }
+
+    @Override
+    public void forEach(Consumer<? super E> action) {
+        Iterable.super.forEach(action);
+    }
+
+    @Override
+    public Spliterator<E> spliterator() {
+        return Iterable.super.spliterator();
+    }
+
 }

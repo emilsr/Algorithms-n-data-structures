@@ -55,10 +55,13 @@ public class HashTableBucket <K, V>{
 
     public static void main(String[] args) {
         HashTableBucket<Integer,String> bucket = new HashTableBucket<Integer,String>(10);
-        System.out.println(bucket.put(1, "a"));
-        System.out.println(bucket.put(2, "b"));
-        System.out.println(bucket.get(1));
-        System.out.println(bucket.get(2));
+        System.out.println("put a at index 1: " + bucket.put(1, "a"));
+        System.out.println("put a at index 2: " + bucket.put(2, "a"));
+        System.out.println("Print index 1: " + bucket.get(1));
+        System.out.println("Print index 2: " + bucket.get(2));
+        System.out.println("put b at index 2: " + bucket.put(2, "b"));
+        System.out.println("get index 1: " + bucket.get(1));
+        System.out.println("get index 2: " + bucket.get(2));
         System.out.println(bucket);
     }
 }
