@@ -96,8 +96,8 @@ public class SingleLinkedList<E> implements Iterable<E> {
     public Iterator<E> iterator() {
         return new Iterator<E>() {
             private Node<E> current = head;
-            private Node<E> previous = null;
-            private boolean canRemove = false;
+            private Node<E> beforCurrent = null;
+            private Node<E> beforBeforCurrent = null;
 
             @Override
             public boolean hasNext() {
@@ -109,31 +109,23 @@ public class SingleLinkedList<E> implements Iterable<E> {
                 if (!hasNext()) {
                     throw new NoSuchElementException("No more elements");
                 }
-                previous = current;
+                beforBeforCurrent = beforCurrent;
+                beforCurrent = current;
                 E data = current.data;
                 current = current.next;
-                canRemove = true;
                 return data;
             }
             @Override
             public void remove(){       //ToDo this is broken
-                System.out.println("Log: in iterator remove: canRemove=" + canRemove);
-                if (!canRemove){
-                    throw new IllegalStateException("remove() can only be called after next().");
+                if (beforCurrent == null || beforBeforCurrent == beforCurrent) {
+                    throw new IllegalStateException("Can't call remove() before next()");
                 }
-                System.out.println("Log: in iterator remove: previous == current: "+ previous.equals(current) );
-                if (previous == null){
-                    head = head.next;
+                if (beforBeforCurrent != null){
+                    beforBeforCurrent.next = current.next;
                 } else {
-                    Node<E> temp = head;
-                    while (temp!= null && temp.next != previous){
-                        temp = temp.next;
-                    }
-                    if (temp != null){
-                        temp.next = current;
-                    }
+                    head = current;
                 }
-                canRemove = false;
+                beforCurrent = beforBeforCurrent;
             }
         };
     }
