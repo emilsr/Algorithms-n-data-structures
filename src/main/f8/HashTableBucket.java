@@ -1,6 +1,5 @@
 package main.f8;
 
-import java.util.Arrays;
 import java.util.Iterator;
 
 public class HashTableBucket <K, V>{
@@ -64,22 +63,8 @@ public class HashTableBucket <K, V>{
         return null;
     }
 
-     //First implementation of remove()
-//     public V remove(K key) {
-//         int index = key.hashCode() % table.length;
-//         if (index < 0) {index += table.length;}
-//         if (table[index] == null) {return null;}
-//         for (Entry<K, V> e : table[index]) {
-//             if (e.key.equals(key)) {
-//                 Entry<K, V> oldValue = e;
-//                 table[index] = null;
-//                 return oldValue.value;
-//             }
-//         }
-//         return null;
-//     }
-
     public V remove(K key) {
+        nrOfEntries--;
         int index = key.hashCode() % table.length;
         if (index < 0) {index += table.length;}
         if (table[index] == null) {return null;}
@@ -89,9 +74,7 @@ public class HashTableBucket <K, V>{
             Entry<K, V> e = itr.next();
             if (e.key.equals(key)) {
                 V removedValue = e.value;
-                System.out.println("Log: we found the key: " + e.key + " and value " + e.value);
                 itr.remove();
-                System.out.println("Log: removed value at Key: " + e.key + " and value " + e.value);
                 if (table[index].toString().equals("[]")){
                     table[index] = null;
                 }
