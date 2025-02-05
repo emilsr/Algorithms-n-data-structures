@@ -1,11 +1,5 @@
 package main.f6.nb17;
 
-/**
- * Skriv om getNode till vår länkade lista så att den blir rekursiv. Du behöver inte hantera felaktiga
- * index. Skriv också en rekursiv size som inte använder en medlemsvariabel utan beräknar size vid
- * varje anrop. Tänk på att size ska fungera på en tom lista.
- */
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
