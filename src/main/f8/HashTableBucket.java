@@ -79,7 +79,6 @@ public class HashTableBucket <K, V>{
 //         return null;
 //     }
 
-    // ToDo dose not work...
     public V remove(K key) {
         int index = key.hashCode() % table.length;
         if (index < 0) {index += table.length;}
@@ -104,6 +103,7 @@ public class HashTableBucket <K, V>{
 
     private void reHash(int size){
         SingleLinkedList<Entry<K,V>>[] oldTable = table;
+        nrOfEntries = 0;
         table = new SingleLinkedList[size];
         for (SingleLinkedList<Entry<K, V>> e : oldTable) {
             if (e != null) {
@@ -114,8 +114,6 @@ public class HashTableBucket <K, V>{
         }
 
     }
-
-
 
     @Override
     public String toString() {
@@ -132,20 +130,4 @@ public class HashTableBucket <K, V>{
         return sb.toString();
     }
 
-
-    public static void main(String[] args) {
-        HashTableBucket<Integer,String> bucket = new HashTableBucket<Integer,String>(10);
-        System.out.println("put a at index 1: " + bucket.put(1, "a"));
-        System.out.println("put a at index 2: " + bucket.put(2, "a"));
-        System.out.println("Print index 1: " + bucket.get(1));
-        System.out.println("Print index 2: " + bucket.get(2));
-        System.out.println("put b at index 2: " + bucket.put(2, "b"));
-        System.out.println("get index 1: " + bucket.get(1));
-        System.out.println("get index 2: " + bucket.get(2));
-        System.out.println(bucket);
-        System.out.println("remove(2): " + bucket.remove(2));
-        System.out.println(bucket);
-        System.out.println("remove(2): " + bucket.remove(2));
-        System.out.println(bucket);
-    }
 }
