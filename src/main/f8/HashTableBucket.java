@@ -20,6 +20,7 @@ public class HashTableBucket <K, V>{
 
     }
     private SingleLinkedList<Entry<K,V>>[] table;
+    private int nrOfEntries;
 
     @SuppressWarnings("unchecked")
     public HashTableBucket(int size){
@@ -27,6 +28,9 @@ public class HashTableBucket <K, V>{
     }
 
     public V put(K key, V value) {
+        if (nrOfEntries++ > 0.75 * table.length){
+            reHash(table.length*2);
+        }
         int index = key.hashCode() % table.length;
         if (index < 0) {
             index += table.length;
@@ -34,7 +38,6 @@ public class HashTableBucket <K, V>{
         if (table[index] == null) {
             table[index] = new SingleLinkedList<Entry<K, V>>();
             table[index].add(new Entry<K, V>(key, value));
-            return null;
         } else {
             V oldValue;
             for (Entry<K, V> e : table[index]) {
@@ -45,8 +48,8 @@ public class HashTableBucket <K, V>{
                 }
             }
             table[index].add(0, new Entry<K, V>(key, value));
-            return null;
         }
+        return null;
     }
 
     public V get(K key) {
@@ -97,6 +100,19 @@ public class HashTableBucket <K, V>{
             }
         }
         return null;
+    }
+
+    private void reHash(int size){
+        SingleLinkedList<Entry<K,V>>[] oldTable = table;
+        table = new SingleLinkedList[size];
+        for (SingleLinkedList<Entry<K, V>> e : oldTable) {
+            if (e != null) {
+                for (Entry<K, V> entry: e){
+                    put(entry.key, entry.value);
+                }
+            }
+        }
+
     }
 
 
