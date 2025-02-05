@@ -1,6 +1,7 @@
 package main.f8;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class HashTableBucket <K, V>{
 
@@ -61,19 +62,42 @@ public class HashTableBucket <K, V>{
     }
 
      //First implementation of remove()
-     public V remove(K key) {
-         int index = key.hashCode() % table.length;
-         if (index < 0) {index += table.length;}
-         if (table[index] == null) {return null;}
-         for (Entry<K, V> e : table[index]) {
-             if (e.key.equals(key)) {
-                 Entry<K, V> oldValue = e;
-                 table[index] = null;
-                 return oldValue.value;
-             }
-         }
-         return null;
-     }
+//     public V remove(K key) {
+//         int index = key.hashCode() % table.length;
+//         if (index < 0) {index += table.length;}
+//         if (table[index] == null) {return null;}
+//         for (Entry<K, V> e : table[index]) {
+//             if (e.key.equals(key)) {
+//                 Entry<K, V> oldValue = e;
+//                 table[index] = null;
+//                 return oldValue.value;
+//             }
+//         }
+//         return null;
+//     }
+
+    // ToDo dose not work...
+    public V remove(K key) {
+        int index = key.hashCode() % table.length;
+        if (index < 0) {index += table.length;}
+        if (table[index] == null) {return null;}
+
+        Iterator<Entry<K, V>> itr = table[index].iterator();
+        while (itr.hasNext()) {
+            Entry<K, V> e = itr.next();
+            if (e.key.equals(key)) {
+                V removedValue = e.value;
+                System.out.println("Log: we found the key: " + e.key + " and value " + e.value);
+                itr.remove();
+                System.out.println("Log: removed value at Key: " + e.key + " and value " + e.value);
+                if (table[index].toString().equals("[]")){
+                    table[index] = null;
+                }
+                return removedValue;
+            }
+        }
+        return null;
+    }
 
 
 
