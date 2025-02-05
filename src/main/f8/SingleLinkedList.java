@@ -109,6 +109,7 @@ public class SingleLinkedList<E> implements Iterable<E> {
                 if (!hasNext()) {
                     throw new NoSuchElementException("No more elements");
                 }
+                beforBeforCurrent = beforCurrent;
                 beforCurrent = current;
                 E data = current.data;
                 current = current.next;
@@ -116,7 +117,15 @@ public class SingleLinkedList<E> implements Iterable<E> {
             }
             @Override
             public void remove(){       //ToDo this is broken
-                
+                if (beforCurrent == null || beforBeforCurrent == beforCurrent) {
+                    throw new IllegalStateException("Can't call remove() before next()");
+                }
+                if (beforBeforCurrent != null){
+                    beforBeforCurrent.next = current.next;
+                } else {
+                    head = current;
+                }
+                beforCurrent = beforBeforCurrent;
             }
         };
     }
