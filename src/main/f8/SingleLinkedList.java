@@ -95,7 +95,10 @@ public class SingleLinkedList<E> implements Iterable<E> {
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            Node<E> current = head;
+            private Node<E> current = head;
+            private Node<E> previus = null;
+            private boolean canRemove = false;
+
             @Override
             public boolean hasNext() {
                 return current != null;
@@ -106,9 +109,25 @@ public class SingleLinkedList<E> implements Iterable<E> {
                 if (!hasNext()) {
                     throw new NoSuchElementException("No more elements");
                 }
+                previus = current;
                 E data = current.data;
                 current = current.next;
+                canRemove = true;
                 return data;
+            }
+            @Override
+            public void remove(){
+                if (!canRemove){
+                    throw new IllegalStateException("remove() can only be called after next().");
+                }
+                if(previus == current){
+                    throw new IllegalStateException("can't remove.");
+                } if (previus == null){
+                    head = current;
+                } else {
+                    previus.next = current;
+                }
+                canRemove = false;
             }
         };
     }

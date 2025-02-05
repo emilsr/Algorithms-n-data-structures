@@ -60,19 +60,22 @@ public class HashTableBucket <K, V>{
         return null;
     }
 
-    public V remove(K key) {
-        int index = key.hashCode() % table.length;
-        if (index < 0) {index += table.length;}
-        if (table[index] == null) {return null;}
-        for (Entry<K, V> e : table[index]) {
-            if (e.key.equals(key)) {
-                Entry<K, V> oldValue = e;
-                table[index] = null;
-                return oldValue.value;
-            }
-        }
-        return null;
-    }
+     //First implementation of remove()
+     public V remove(K key) {
+         int index = key.hashCode() % table.length;
+         if (index < 0) {index += table.length;}
+         if (table[index] == null) {return null;}
+         for (Entry<K, V> e : table[index]) {
+             if (e.key.equals(key)) {
+                 Entry<K, V> oldValue = e;
+                 table[index] = null;
+                 return oldValue.value;
+             }
+         }
+         return null;
+     }
+
+
 
     @Override
     public String toString() {
