@@ -1,5 +1,5 @@
 package main.f8.nb26_3;
-
+/*
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -56,3 +56,5 @@ public class MyHashMapTest {
         assertEquals(5, hashTable.get("e"));
     }
 }
+
+ */

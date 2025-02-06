@@ -35,30 +35,33 @@ public class MyHashMap<K, V> {
 
     public V put(K key, V value){
         if (key == null || value == null) throw new NullPointerException("key or value is null, key=" + key + ", value=" + value);
-        if (nrOfEntries++ > 0.75 * table.length)reHash(table.length * 2);
 
         int index = getHashKey(key);
-        while (table[index] != null && table[index].key != null && !table[index].key.equals(key)){
-            index = (index + 1) % table.length;
-        }
-        nrOfEntries++;
-        table[index] = new Entry(key, value);
-        return value;
-    }
-
-    public V remove(K key){
-        if (key == null) throw new NullPointerException("key can't be null");
-
-        int index = getHashKey(key);
-        while (table[index]!=null){
-            if (table[index].key != null && table[index].key.equals(key)){
-                V oldValue = table[index].value;
-                table[index] = null;
-                nrOfEntries--;
+        // First check if key exists
+        int probeIndex = index;
+        while (table[probeIndex] != null) {
+            if (table[probeIndex].key.equals(key)) {
+                V oldValue = table[probeIndex].value;
+                table[probeIndex].value = value;
                 return oldValue;
             }
+            probeIndex = (probeIndex + 1) % table.length;
+            if (probeIndex == index) break; // Full table check
+        }
+
+        // If we need to add a new entry
+        if (nrOfEntries >= 0.75 * table.length) {
+            reHash(table.length * 2);
+            index = getHashKey(key);
+        }
+
+        // Find next available slot
+        while (table[index] != null && table[index].key != null) {
             index = (index + 1) % table.length;
         }
+
+        table[index] = new Entry<>(key, value);
+        nrOfEntries++;
         return null;
     }
 
