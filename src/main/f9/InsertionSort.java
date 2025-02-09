@@ -2,7 +2,7 @@ package main.f9;
 
 import java.util.Arrays;
 
-public class InstickSortering {
+public class InsertionSort {
     int a[] = new int[10];
     int length = 0;
 
@@ -34,7 +34,7 @@ public class InstickSortering {
     }
 
     public static void main(String[] args) {
-        InstickSortering sortering = new InstickSortering();
+        InsertionSort sortering = new InsertionSort();
 
         System.out.println(sortering);
         System.out.println(sortering.addSorted(2));
