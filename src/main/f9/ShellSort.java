@@ -6,7 +6,11 @@ public class ShellSort {
         int n = arr.length;
         int gap = n / 2;
         while (gap > 0) {
-            for (int i = gap; i < n-1; i++) {}
+            for (int i = gap; i < n-1; i++) {
+                var temp = arr[i];
+                int j;
+
+            }
         }
 
 
