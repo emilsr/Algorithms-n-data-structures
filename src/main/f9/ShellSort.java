@@ -4,25 +4,27 @@ import java.util.Arrays;
 
 public class ShellSort {
 
-    public static void ShellSort(int[] arr) {
-        int n = arr.length;
-        int gap = n / 2;
+    public static void sort(int[] arr) {
+        int gap = arr.length / 2;
         while (gap > 0) {
-            for (int i = 0; i + gap < arr.length; i++) {
-                if (arr[i] > arr[i + gap]) {
-                    int temp = arr[i];
-                    arr[i] = arr[i + gap];
-                    arr[i + gap] = temp;
+            for (int i = gap; i < arr.length; i++) {
+                var temp = arr[i];
+                int dataIndex = i;
+                while (dataIndex > gap-1 && temp < arr[dataIndex - gap]) {
+                    arr[dataIndex] = arr[dataIndex - gap];
+                    dataIndex -= gap;
                 }
+                arr[dataIndex] = temp;
             }
-            System.out.println("G " + gap + ": " + Arrays.toString(arr));
-            gap--;
+            if (gap == 2 ) { gap = 1;}
+            else { gap = (int) (gap/2.2);}
         }
     }
 
 
     public static void main(String[] args) {
-        int[] arr = { 3, 7, 10, 1, 5, 4, 11, 6 };
-        ShellSort(arr);
+        int[] arr = { 7, 3, 1, 2, 5, 6 , 4, 10};
+        sort(arr);
+        System.out.println(Arrays.toString(arr));
     }
 }
