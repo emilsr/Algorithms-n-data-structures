@@ -12,14 +12,6 @@ public class SelectionSort {
         this.size = 0;
     }
 
-    public void initMocValue() {
-        Random r = new Random();
-        for (int i = 0; i < 5; i++) {
-            a[i] = r.nextInt(100);
-            size++;
-        }
-    }
-
     public void sort() {
         int maxIndex = 0;
         for (int j = 0; j < size-1; j++) {
@@ -33,7 +25,6 @@ public class SelectionSort {
             a[maxIndex] = temp;
             System.out.println(Arrays.toString(a));
         }
-
     }
 
     public String toSting() {

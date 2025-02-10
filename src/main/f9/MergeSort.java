@@ -2,7 +2,7 @@ package main.f9;
 
 import java.util.Arrays;
 
-public class mergeSort {
+public class MergeSort {
 
     public static void sort(int[] arr) {
         if (arr.length <= 1) {return;}

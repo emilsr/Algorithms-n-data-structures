@@ -3,32 +3,32 @@ package main.f9;
 import java.util.Arrays;
 
 public class QuickSort {
-    public int [] array;
+    int[] array;
 
-    public int[] sort(int[] array) {
-        this.array = array;
-        quickSort(0, array.length-1);
+    public static int[] sort(int[] array) {
+        array = array;
+        quickSort(array ,0, array.length-1);
         return array;
     }
 
-    public void quickSort(int from , int to) {
+    private static void quickSort(int[] array ,int from, int to) {
         if (from >= to) { return; }
         int pointer = from;
 
         for (int i = from; i < to; i++) {
             if (array[i] < array[to]) {
-                swap(pointer, i);
+                swap(array, pointer, i);
                 pointer++;
             }
         }
-        swap(pointer, to);
+        swap(array, pointer, to);
 
-        quickSort(from, pointer-1);
-        quickSort(pointer+1, to);
+        quickSort(array, from, pointer-1);
+        quickSort(array,pointer+1, to);
 
     }
 
-    private void swap(int from, int to) {
+    private static void swap(int[] array, int from, int to) {
         int temp = array[from];
         array[from] = array[to];
         array[to] = temp;

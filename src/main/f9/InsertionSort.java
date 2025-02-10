@@ -3,7 +3,7 @@ package main.f9;
 import java.util.Arrays;
 
 public class InsertionSort {
-    public static void insertionSort(int[] a) {
+    public static void sort(int[] a) {
         int n = a.length;
 
         for (int i = 1; i < n; i++) {
@@ -15,7 +15,6 @@ public class InsertionSort {
                 j = j-1;
             }
             a[j + 1] = key;
-            System.out.println(Arrays.toString(a));
         }
     }
 }
