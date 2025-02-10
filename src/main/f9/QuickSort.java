@@ -33,12 +33,4 @@ public class QuickSort {
         array[from] = array[to];
         array[to] = temp;
     }
-
-    public static void main(String[] args) {
-        int[] a = new int[]{7,8,2,6,1,3,5};
-        QuickSort qs = new QuickSort();
-        System.out.println(Arrays.toString(a));
-        System.out.println("Pivot: " + a[a.length - 1]);
-        System.out.println(Arrays.toString(qs.sort(a)));
-    }
 }

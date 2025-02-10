@@ -33,11 +33,4 @@ public class mergeSort {
             c[indexC++] = upper[indexUpper++];
         }
     }
-
-    public static void main(String[] args) {
-        int[] arr = {2, 4, 1, 8, 5, 3, 7};
-        System.out.println(Arrays.toString(arr));
-        sort(arr);
-        System.out.println(Arrays.toString(arr));
-    }
 }

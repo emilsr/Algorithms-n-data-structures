@@ -18,10 +18,4 @@ public class InsertionSort {
             System.out.println(Arrays.toString(a));
         }
     }
-
-    public static void main(String[] args) {
-        int[] a = { 5, 3, 1, 2, 4 };
-        System.out.println(Arrays.toString(a));
-        insertionSort(a);
-    }
 }

@@ -43,13 +43,4 @@ public class SelectionSort {
         }
         return str;
     }
-
-
-    public static void main(String[] args) {
-        SelectionSort sort = new SelectionSort();
-        sort.initMocValue();
-        System.out.println(sort.toSting());
-        sort.sort();
-        System.out.println(sort.toSting());
-    }
 }
