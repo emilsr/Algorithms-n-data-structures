@@ -1,37 +1,20 @@
 package main.f9;
 
 import java.util.Arrays;
-import java.util.Random;
 
 public class SelectionSort {
-    int a[];
-    int size;
 
-    public SelectionSort() {
-        this.a = new int[10];
-        this.size = 0;
-    }
-
-    public void sort() {
+    public static void sort(int[] array) {
         int maxIndex = 0;
-        for (int j = 0; j < size-1; j++) {
-            for (int i = j; i < size; i++) {
-                if (a[i] < a[maxIndex]) {
+        for (int j = 0; j < array.length-1; j++) {
+            for (int i = j; i < array.length; i++) {
+                if (array[i] < array[maxIndex]) {
                     maxIndex = i;
                 }
             }
-            int temp = a[j];
-            a[j] = a[maxIndex];
-            a[maxIndex] = temp;
-            System.out.println(Arrays.toString(a));
+            int temp = array[j];
+            array[j] = array[maxIndex];
+            array[maxIndex] = temp;
         }
-    }
-
-    public String toSting() {
-        String str = "";
-        for (int i = 0; i < 5; i++) {
-            str += a[i] + " ";
-        }
-        return str;
     }
 }

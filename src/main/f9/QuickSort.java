@@ -1,14 +1,9 @@
 package main.f9;
 
-import java.util.Arrays;
-
 public class QuickSort {
-    int[] array;
 
-    public static int[] sort(int[] array) {
-        array = array;
+    public static void sort(int[] array) {
         quickSort(array ,0, array.length-1);
-        return array;
     }
 
     private static void quickSort(int[] array ,int from, int to) {
@@ -22,10 +17,8 @@ public class QuickSort {
             }
         }
         swap(array, pointer, to);
-
         quickSort(array, from, pointer-1);
         quickSort(array,pointer+1, to);
-
     }
 
     private static void swap(int[] array, int from, int to) {
