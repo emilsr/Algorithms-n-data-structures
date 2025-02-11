@@ -7,32 +7,49 @@ public class MinHeap<E extends Comparable<E>>  {
     private int size;
     private E[] data;
 
-    public MinHeap(int size){
-        data = (E[]) new Comparable[size];
+    public MinHeap(int startSize){
+        data = (E[]) new Comparable[startSize];
     }
 
-    public boolean insert (E element){
+    public boolean insert(E element){
         if (size == data.length){
             return false; // ToDO fix reallocate... 
         }
-        data[size++] = element;
-        if (size>1) {
-            shiftUp(size);    
-        }
-        
+        data[size] = element;
+        shiftUp(size++);    
         return true;
     }
 
+    public E extract(){
+        var t = data[0];
+        size--;
+        shiftDown(0);
+        return t;
+    }
+
+    private void shiftDown(int parent){
+        if (parent>=size) return;
+        var shiledA = parent*2 +1;
+        var shiledB = shiledA+1;
+        if (data[shiledA].compareTo(data[shiledB])<0) {
+            swap(parent, shiledA);
+            shiftDown(shiledA);
+        } else {
+            swap(parent, shiledB);
+            shiftDown(shiledB);
+        }
+        
+    }
+
+
     private void shiftUp(int chiled){
+        if (chiled==0) return;
         int parent = chiled/2 -1;
-        System.out.println("parent: " + parent);
+        if (parent<0) parent = 0;
         if (data[chiled].compareTo(data[parent]) < 0) {
             swap(chiled, parent);
             shiftUp(parent);
         }
-    }
-
-    private void shiftDown(int parent){
     }
 
     private void swap(int a, int b){
@@ -41,19 +58,25 @@ public class MinHeap<E extends Comparable<E>>  {
         data[b] = t;
     }
 
-    public E extract(){
-        return null;
-    }
-
-    public String toString(){
-        return Arrays.toString(data);
+    public StringBuilder string(){
+        StringBuilder sb = new StringBuilder("[ ");
+        for (int i = 0; i<size; i++){
+            sb.append(data[i]+ " ");
+        }
+        sb.append("]");
+        return sb;
     }
 
 
     public static void main(String[] args) {
         MinHeap heap = new MinHeap<>(10);
+        System.out.println(heap.insert(2));
         System.out.println(heap.insert(1));
-        //heap.insert(2);
-        System.out.println(heap);
+        System.out.println(heap.insert(4));
+        System.out.println(heap.insert(5));
+        System.out.println(heap.insert(3));
+        System.out.println(heap.string());
+        System.out.println(heap.extract());
+        System.out.println(heap.string());
     }
 }
