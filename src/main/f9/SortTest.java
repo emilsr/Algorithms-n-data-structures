@@ -5,7 +5,7 @@ import java.util.Random;
 public class SortTest {
     public static void main(String[] args) {
         int arraySize = 1000;
-        int iterations = 100;
+        int iterations = 10000;
 
         long totalTimeInsertSort = 0;
         long totalTimeSelectionSort = 0;
