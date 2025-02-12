@@ -1,4 +1,4 @@
-package main.f10;
+package main.f10.nb30;
 
 public class MinHeap<E extends Comparable<E>>  {
 
