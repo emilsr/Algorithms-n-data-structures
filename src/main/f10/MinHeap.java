@@ -1,23 +1,27 @@
 package main.f10;
 
-import java.util.Arrays;
-
 public class MinHeap<E extends Comparable<E>>  {
 
     private int size;
     private E[] data;
 
-    public MinHeap(int startSize){
-        data = (E[]) new Comparable[startSize];
+    public MinHeap(int maxSize){
+        data = (E[]) new Comparable[maxSize];
     }
 
     public boolean insert(E element){
-        if (size == data.length){
-            return false; // ToDO fix reallocate... 
-        }
+        if (size == data.length) reallocate(size*2);
         data[size] = element;
         shiftUp(size++);    
         return true;
+    }
+
+    private void reallocate(int newMaxSize){
+        E[] t = (E[]) new Comparable[newMaxSize];
+        for (int i = 0; i<size; i++){
+            t[i] = data[i];
+        } 
+        data = t;
     }
 
     public E extract(){
@@ -40,7 +44,6 @@ public class MinHeap<E extends Comparable<E>>  {
         }
         
     }
-
 
     private void shiftUp(int chiled){
         if (chiled==0) return;
@@ -69,7 +72,7 @@ public class MinHeap<E extends Comparable<E>>  {
 
 
     public static void main(String[] args) {
-        MinHeap heap = new MinHeap<>(10);
+        MinHeap heap = new MinHeap<>(2);
         System.out.println(heap.insert(2));
         System.out.println(heap.insert(1));
         System.out.println(heap.insert(4));
