@@ -1,4 +1,4 @@
-package graphicPrim;
+package main.f11;
 
 public class Point {
     public int x,y;

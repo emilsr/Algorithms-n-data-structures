@@ -1,4 +1,4 @@
-package graphicPrim;
+package main.f11;
 
 public class Edge {
     public Point p1,p2;
