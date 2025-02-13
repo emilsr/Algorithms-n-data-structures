@@ -1,7 +1,5 @@
 package main.f9;
 
-import java.util.Arrays;
-
 public class SelectionSort {
 
     public static void sort(int[] array) {

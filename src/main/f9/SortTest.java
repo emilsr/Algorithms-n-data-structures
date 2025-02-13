@@ -67,7 +67,13 @@ public class SortTest {
         System.out.println("Total time taken for SelectionSort......" + totalTimeSelectionSort + " ns");
         System.out.println("Total time taken for ShellSort.........." + totalTimeShellSort + " ns");
         System.out.println("Total time taken for MergeSort.........." + totalTimeMergeSort + " ns");
-        System.out.println("Total time taken for QuickSort----------" + totalTimeQuickSort + " ns");
+        System.out.println("Total time taken for QuickSort.........." + totalTimeQuickSort + " ns \n");
+
+        System.out.println("Avg time taken for InsertionSort......" + totalTimeInsertSort/iterations + " ns");
+        System.out.println("Avg time taken for SelectionSort......" + totalTimeSelectionSort/iterations + " ns");
+        System.out.println("Avg time taken for ShellSort.........." + totalTimeShellSort/iterations + " ns");
+        System.out.println("Avg time taken for MergeSort.........." + totalTimeMergeSort/iterations + " ns");
+        System.out.println("Avg time taken for QuickSort.........." + totalTimeQuickSort/iterations + " ns");
 
     }
 }
