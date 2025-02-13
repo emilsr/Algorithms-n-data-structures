@@ -44,7 +44,7 @@ public class HeapSort {
             int chiledA = parent * 2 + 1;
             int chiledB = chiledA + 1;
             int largest = parent;
-
+            
             if (chiledA < size && array[chiledA] > array[largest]) {
                 largest = chiledA;
             }
@@ -64,11 +64,5 @@ public class HeapSort {
         int t = array[a];
         array[a] = array[b];
         array[b] = t;
-    }
-
-    public static void main(String[] args) {
-        int[] array = {3, 5, 1, 10, 2, 7};
-        sort(array);
-        System.out.println(Arrays.toString(array)); // Should print [1, 2, 3, 5, 7, 10]
     }
 }
