@@ -1,7 +1,5 @@
 package main.f10.nb31;
 
-import java.util.Arrays;
-
 public class HeapSort {
 
     public static void sort(int[] array){
