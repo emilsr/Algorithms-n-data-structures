@@ -59,6 +59,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="javafx-swt" level="project" />
+    <orderEntry type="library" name="javafx-w11" level="project" />
+    <orderEntry type="library" name="javafx-MA 64ARC" level="project" />
   </component>
 </module>
