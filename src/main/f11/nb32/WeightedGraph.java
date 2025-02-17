@@ -117,7 +117,6 @@ public class WeightedGraph {
         return path;
     }
 
-
     public static void main(String[] args) {
         WeightedGraph test = new WeightedGraph("src/main/f11/nb32/test.txt");
         System.out.println(test.toString());
