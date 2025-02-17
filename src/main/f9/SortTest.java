@@ -2,7 +2,9 @@ package main.f9;
 
 import java.util.Random;
 
-import main.f10.nb31.HeapSort;
+
+//import main.f10.nb31.HeapSort;
+//import main.f10.nb31.HeapSort;
 
 public class SortTest {
     public static void main(String[] args) {
@@ -66,11 +68,12 @@ public class SortTest {
             QuickSort.sort(arrayQuickSort);
             endTime = System.nanoTime();
             totalTimeQuickSort += endTime - startTime;
-            
-            startTime = System.nanoTime();
-            HeapSort.sort(arrayHeapSort);
-            endTime = System.nanoTime();
-            totalTimeHeapSort += endTime - startTime;
+
+
+//            startTime = System.nanoTime();
+//            HeapSort.sort(arrayHeapSort);
+//            endTime = System.nanoTime();
+//            totalTimeHeapSort += endTime - startTime;
 
         }
         System.out.println("Test was done with a Array size of " + arraySize + " and was ran: " + iterations + " times");
