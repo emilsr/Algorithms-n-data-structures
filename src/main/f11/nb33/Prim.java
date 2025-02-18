@@ -14,9 +14,6 @@ import java.util.BitSet;
  */
 
 public class Prim {
-
-
-	
 	public static void main(String[] args) {
 		int X = Integer.MAX_VALUE;
 		int[][] w = {	
@@ -52,23 +49,23 @@ public class Prim {
 
 	// w - förbindelsematris, prim returnerar en array p, där p[i] är den nod som noden i anslöts till (i>0)
 	private static int[] prim(int[][] w){
-		int[] p = new int[w.length]; // p[i] = noden som i anslöts till
-		int[] costs = new int[w.length]; // Minsta kostnad att ansluta varje nod
-		BitSet visited = new BitSet(w.length); // Håller koll på besökta noder
+		int[] p = new int[w.length];
+		int[] costs = new int[w.length];
+		BitSet visited = new BitSet(w.length);
 
 		Arrays.fill(costs, Integer.MAX_VALUE);
 		Arrays.fill(p, -1);
-		costs[0] = 0; // Starta från nod 0
+		costs[0] = 0;
 
 		for (int i = 0; i < w.length; i++) {
 			int next = nextIndex(visited, costs);
-			if (next == -1) break; // Alla noder är besökta
+			if (next == -1) break;
 			visited.set(next);
 
 			for (int j = 0; j < w.length; j++) {
 				if (!visited.get(j) && w[next][j] < costs[j]) {
 					costs[j] = w[next][j];
-					p[j] = next; // Spara vilken nod j ansluts till
+					p[j] = next;
 				}
 			}
 		}

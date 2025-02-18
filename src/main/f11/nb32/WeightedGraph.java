@@ -62,17 +62,10 @@ public class WeightedGraph {
 
 
     public List<String> shortestPath(String start, String end) {
-        // Håll reda på avstånden
         Map<String, Integer> distances = new HashMap<>();
-        // Håll reda på föregående nod för att kunna återskapa vägen
         Map<String, String> previous = new HashMap<>();
-        // PriorityQueue för att alltid välja noden med minst avstånd
-        PriorityQueue<String> queue = new PriorityQueue<>(
-            (a, b) -> distances.getOrDefault(a, Integer.MAX_VALUE) - 
-                      distances.getOrDefault(b, Integer.MAX_VALUE)
-        );
+        PriorityQueue<String> queue = new PriorityQueue<>();
         
-        // Initialisera avstånd
         for (String node : adjacencyList.keySet()) {
             distances.put(node, Integer.MAX_VALUE);
         }
@@ -82,17 +75,14 @@ public class WeightedGraph {
         while (!queue.isEmpty()) {
             String current = queue.poll();
             
-            // Om vi har nått målnoden kan vi avsluta
             if (current.equals(end)) {
                 break;
             }
             
-            // Om vi har besökt denna nod redan
             if (!adjacencyList.containsKey(current)) {
                 continue;
             }
             
-            // Gå igenom alla grannar
             for (Map.Entry<String, Integer> neighbor : adjacencyList.get(current).entrySet()) {
                 String next = neighbor.getKey();
                 int newDist = distances.get(current) + neighbor.getValue();
@@ -105,7 +95,6 @@ public class WeightedGraph {
             }
         }
         
-        // Återskapa vägen
         List<String> path = new ArrayList<>();
         String current = end;
         
