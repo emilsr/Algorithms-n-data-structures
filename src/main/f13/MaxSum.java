@@ -2,16 +2,13 @@ package main.f13;
 
 public class MaxSum {
     public static int maxSumItr(int[] arr) {
-        int maxCount = - Integer.MAX_VALUE;
-        int fragileCount = 0;
-        int strongCount = 0;
+        int maxCount = Integer.MIN_VALUE;
+        int currentCount = 0;
 
         for (int i = 0; i < arr.length-1; i++) {
-            strongCount += arr[i];
-            fragileCount += arr[i];
-            if (strongCount >= maxCount || fragileCount >= maxCount) { maxCount = Math.max(strongCount, fragileCount); }
-            if (arr[i] < 0) { fragileCount = 0; }
-            if (strongCount < 1){ strongCount = 0; }
+            currentCount += arr[i];
+            if (currentCount >= maxCount ) { maxCount = currentCount; }
+            if (currentCount < 1){ currentCount = 0; }
         }
         return maxCount;
     }
