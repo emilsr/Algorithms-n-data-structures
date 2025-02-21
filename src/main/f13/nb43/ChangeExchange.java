@@ -1,7 +1,7 @@
 package main.f13.nb43;
 
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.Scanner;
 
 /**
  * Skriv ett program som löser det generella växlingsproblemet. Användaren får först ange hur många
@@ -13,20 +13,11 @@ import java.util.HashSet;
 
 public class ChangeExchange {
 
-    public String change(int amount, int[] values){
-        if (amount < 0){ throw new IllegalArgumentException("amount < 0"); }
-        if (values == null || values.length == 0){ throw new IllegalArgumentException("values is null or empty"); }
-
-        return null;
-    }
-
-
     private final int[] change;
-    private HashSet<Integer> prevStates;
+
 
     public ChangeExchange(int[] change){
         this.change = change;
-        this.prevStates = new HashSet<>();
     }
 
     public int[] exchange(int amount){
@@ -61,7 +52,33 @@ public class ChangeExchange {
     }
 
     public static void main(String[] args) {
-        ChangeExchange changeExchange = new ChangeExchange(new int[]{500, 12, 10, 1});
-        System.out.println(Arrays.toString(changeExchange.exchange(520)));
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ange antal olika valörer: ");
+        int n = scanner.nextInt();
+        int[] denominations = new int[n];
+
+        System.out.println("Ange valörerna (i stigande ordning):");
+        for (int i = 0; i < n; i++) {
+            denominations[i] = scanner.nextInt();
+        }
+
+        System.out.print("Ange belopp att växla: ");
+        int amount = scanner.nextInt();
+
+        ChangeExchange changeExchange = new ChangeExchange(denominations);
+        int[] result = changeExchange.exchange(amount);
+
+        if (result == null) {
+            System.out.println("Det går inte att växla beloppet med angivna valörer.");
+        } else {
+            System.out.println("Minsta antal mynt och sedlar:");
+            for (int i = 0; i < result.length; i++) {
+                if (result[i] > 0) {
+                    System.out.println(denominations[i] + "-valörer: " + result[i] + " st");
+                }
+            }
+        }
+        scanner.close();
     }
 }

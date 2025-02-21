@@ -2,7 +2,6 @@ package main.f13.nb41;
 
 
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  * Skriv ett program som slumpar n stycken heltal mellan -1000 och 1000. Användaren anger n.

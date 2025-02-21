@@ -19,11 +19,9 @@ public class Main {
             points[i] = new Point(x, y);
         }
 
-        // Find shortest distance using both methods
         float bruteForceDistance = findShortestDistanceItr(points);
         float divideConquerDistance = findShortestDistanceDQ(points.clone());
 
-        // Print results
         System.out.println("Shortest distance (brute force): " + bruteForceDistance);
         System.out.println("Shortest distance (divide & conquer): " + divideConquerDistance);
         System.out.println("Results match: " + (Math.abs(bruteForceDistance - divideConquerDistance) < 1e-6));
