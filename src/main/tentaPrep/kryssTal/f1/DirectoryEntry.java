@@ -19,7 +19,14 @@ public class DirectoryEntry {
         this.name=name;
         this.number=number;
     }
+
     @Override
-    //Lägg till koden för equals här
+    public boolean equals(Object obj) {
+        if (this==obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        DirectoryEntry t = (DirectoryEntry) obj;
+        return (t.name == ((DirectoryEntry) obj).name && t.number == ((DirectoryEntry) obj).number );
+    }
+
     
 }
