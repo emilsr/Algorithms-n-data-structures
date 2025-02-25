@@ -1,6 +1,5 @@
 package main.f13.nb41;
 
-
 import java.util.Random;
 
 /**
@@ -9,6 +8,7 @@ import java.util.Random;
  * en funktion som använder en söndra och härska algoritm. Den skriver sedan ut vad summan blev och
  * hur många anrop till funktionen som gjordes.
  */
+
 public class MaxSum {
     int nrOfNumbers;
     int[] numbers;
