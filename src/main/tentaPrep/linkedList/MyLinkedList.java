@@ -50,6 +50,18 @@ public class MyLinkedList <E> {
         return true;
     }
 
+    // Must be type E not Node
+    public Node<E> remove(Node<E> node){
+        Node<E> t = head;
+        while (t.next != null){
+            if (node.next== t){
+                t.next = t.next.next;
+                return node;
+            }
+        }
+        return null;
+    }
+
     private void addFirst(E data){
         Node<E> newNode = new Node<>(data, head);
         head = newNode;
