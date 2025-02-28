@@ -1,9 +1,6 @@
 package main.tentaPrep.linkedList;
 
 /**
- *
- * Implementera metoder som add(index, item) och get(index) i en länkad lista.
- *
  * Skriva metoden remove till en lista.
  *
  * Skriva metoden size till listan. Använd rekursion för att lösa uppgiften.
@@ -41,16 +38,16 @@ public class MyLinkedList <E> {
     }
 
     public boolean add(E data, int index){
+        if (0 < index || index > size) throw new IndexOutOfBoundsException();
+        if (data == null) throw new IllegalArgumentException();
         if (index == 0){
             addFirst(data);
-            return true;
         } else if (index == size) {
             addLast(data);
-            return true;
         } else {
             addAtIndex(data,index);
         }
-        return false;
+        return true;
     }
 
     private void addFirst(E data){
@@ -61,11 +58,11 @@ public class MyLinkedList <E> {
 
     private void addAtIndex(E data, int index){
         Node<E> t = head;
-        for (int i = 0; i < index-1; i++){
+        for (int i = 0; i < index; i++){
             t = t.next;
             System.out.println(t);
         }
-        t.next = new Node<>(data, t.next.next);
+        t.next = new Node<>(data, t.next);
         size++;
     }
 
@@ -82,11 +79,11 @@ public class MyLinkedList <E> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        Node t = head;
-        sb.append("List = {").append(head.data);
-        for (int i = 0; i < size-1; i++){
-            sb.append(", ").append(t.next.data);
+        Node<E> t = head;
+        sb.append("List = {").append(t.data);
+        while (t.next != null){
             t = t.next;
+            sb.append(", ").append(t.data);
         }
         sb.append("} size = ").append(size);
         return sb.toString();
@@ -94,11 +91,15 @@ public class MyLinkedList <E> {
 
     public static void main(String[] args) {
         MyLinkedList ll = new MyLinkedList();
-        ll.add("1", 0);
-        ll.add("2", 0);
-        ll.add("3", 2);
-        ll.add("4", 1);
-
+        System.out.println("add node: " + ll.add("1", 0));
+        System.out.println(ll);
+        System.out.println("add node: " + ll.add("2", 0));
+        System.out.println(ll);
+        System.out.println("add node: " + ll.add("3", 0));
+        System.out.println(ll);
+        System.out.println("add node: " + ll.add("4", 3));
+        System.out.println(ll);
+        System.out.println("add node: " + ll.add("5", 1));
         System.out.println(ll);
 
 
