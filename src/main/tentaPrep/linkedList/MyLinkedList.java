@@ -44,27 +44,38 @@ public class MyLinkedList <E> {
         if (index == 0){
             addFirst(data);
             return true;
+        } else if (index == size) {
+            addLast(data);
+            return true;
+        } else {
+            addAtIndex(data,index);
         }
         return false;
     }
 
-    private void addFirst(E node){
-        Node newNode = new Node(node, null);
-        if (size == 0){
-            head = newNode;
-        }
+    private void addFirst(E data){
+        Node<E> newNode = new Node<>(data, head);
+        head = newNode;
         size++;
     }
 
-    private boolean addLast(E data){
+    private void addAtIndex(E data, int index){
         Node<E> t = head;
-        for (int i = 0; i<size; i++){
+        for (int i = 0; i < index-1; i++){
+            t = t.next;
+            System.out.println(t);
+        }
+        t.next = new Node<>(data, t.next.next);
+        size++;
+    }
+
+    private void addLast(E data){
+        Node<E> t = head;
+        while (t.next != null){
             t = t.next;
         }
-        t.data = data;
-        t.next = null;
+        t.next = new Node<>(data, null);
         size++;
-        return true;
     }
 
 
@@ -73,8 +84,8 @@ public class MyLinkedList <E> {
         StringBuilder sb = new StringBuilder();
         Node t = head;
         sb.append("List = {").append(head.data);
-        for (int i = 0; i < size; i++){
-            sb.append(", ").append(t.next);
+        for (int i = 0; i < size-1; i++){
+            sb.append(", ").append(t.next.data);
             t = t.next;
         }
         sb.append("} size = ").append(size);
@@ -83,7 +94,11 @@ public class MyLinkedList <E> {
 
     public static void main(String[] args) {
         MyLinkedList ll = new MyLinkedList();
-        ll.add("asd", 0);
+        ll.add("1", 0);
+        ll.add("2", 0);
+        ll.add("3", 2);
+        ll.add("4", 1);
+
         System.out.println(ll);
 
 
