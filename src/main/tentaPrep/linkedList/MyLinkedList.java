@@ -115,7 +115,7 @@ public class MyLinkedList <E> {
     }
 
     public static void main(String[] args) {
-        MyLinkedList ll = new MyLinkedList();
+        MyLinkedList<String> ll = new MyLinkedList();
         System.out.println("add node: " + ll.add("1", 0));
         System.out.println(ll);
         System.out.println("add node: " + ll.add("2", 0));
