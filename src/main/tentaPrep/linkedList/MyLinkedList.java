@@ -1,8 +1,6 @@
 package main.tentaPrep.linkedList;
 
 /**
- * Skriva metoden remove till en lista.
- *
  * Skriva metoden size till listan. Använd rekursion för att lösa uppgiften.
  *
  * Få en iterator att fungera korrekt för en enkellänkad lista.
@@ -38,7 +36,7 @@ public class MyLinkedList <E> {
     }
 
     public boolean add(E data, int index){
-        if (0 < index || index > size) throw new IndexOutOfBoundsException();
+        if (0 > index || index > size) throw new IndexOutOfBoundsException();
         if (data == null) throw new IllegalArgumentException();
         if (index == 0){
             addFirst(data);
@@ -50,16 +48,32 @@ public class MyLinkedList <E> {
         return true;
     }
 
-    // Must be type E not Node
-    public Node<E> remove(Node<E> node){
+    public E remove(E data){
         Node<E> t = head;
+        if (head.data == data){
+            head = head.next;
+            size--;
+            return data;
+        }
         while (t.next != null){
-            if (node.next== t){
+            if (t.next.data == data){
                 t.next = t.next.next;
-                return node;
+                size--;
+                return data;
             }
+            t = t.next;
+
         }
         return null;
+    }
+
+    public int size(){
+        return size(head);
+    }
+
+    private int size(Node<E> node){
+        if (node.next == null) return 1;
+        return size(node.next)+1;
     }
 
     private void addFirst(E data){
@@ -70,9 +84,8 @@ public class MyLinkedList <E> {
 
     private void addAtIndex(E data, int index){
         Node<E> t = head;
-        for (int i = 0; i < index; i++){
+        for (int i = 0; i < index-1; i++){
             t = t.next;
-            System.out.println(t);
         }
         t.next = new Node<>(data, t.next);
         size++;
@@ -109,10 +122,21 @@ public class MyLinkedList <E> {
         System.out.println(ll);
         System.out.println("add node: " + ll.add("3", 0));
         System.out.println(ll);
-        System.out.println("add node: " + ll.add("4", 3));
+        System.out.println("add node: " + ll.add("4", 1));
         System.out.println(ll);
         System.out.println("add node: " + ll.add("5", 1));
         System.out.println(ll);
+        System.out.println("add node: " + ll.add("6", 5));
+        System.out.println(ll);
+        System.out.println(ll.remove("4"));
+        System.out.println(ll);
+        System.out.println(ll.remove("6"));
+        System.out.println(ll);
+        System.out.println(ll.remove("3"));
+        System.out.println(ll);
+        System.out.println(ll.size());
+
+
 
 
     }
