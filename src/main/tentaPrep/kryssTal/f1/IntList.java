@@ -11,6 +11,8 @@ package main.tentaPrep.kryssTal.f1;
  * • size()
  */
 
+/*
+
 public class IntList {
     int size;
     int maxSize;
@@ -50,3 +52,5 @@ public class IntList {
 
 
 }
+
+ */
