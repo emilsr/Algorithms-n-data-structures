@@ -1,5 +1,9 @@
 package main.tentaPrep.linkedList;
 
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
 /**
  * Skriva metoden size till listan. Använd rekursion för att lösa uppgiften.
  *
@@ -7,12 +11,34 @@ package main.tentaPrep.linkedList;
  *
  * Lägga till en metod för att ange startindex för en iterator.
  */
-public class MyLinkedList <E> {
+public class MyLinkedList <E> implements Iterator {
 
-    private Node<E> head;
-    private int size;
+    Node<E> head;
+    int size;
 
-    private static class Node <E> {
+
+    @Override
+    public boolean hasNext() {
+        return false;
+    }
+
+    @Override
+    public Object next() {
+        return null;
+    }
+
+    @Override
+    public void remove() {
+        Iterator.super.remove();
+    }
+
+    @Override
+    public void forEachRemaining(Consumer action) {
+        Iterator.super.forEachRemaining(action);
+    }
+
+    public class Node<E> {
+
         private E data;
         private Node<E> next;
 
@@ -28,6 +54,7 @@ public class MyLinkedList <E> {
                     ", next=" + next +
                     '}';
         }
+
     }
 
     public MyLinkedList (){

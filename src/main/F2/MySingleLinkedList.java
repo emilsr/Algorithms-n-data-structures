@@ -67,7 +67,7 @@ public class MySingleLinkedList<E> {
     private Node<E> head;
     private int size = 0;
 
-    public MySingleLinkedList(){
+    public MySingleLinkedList (){
         head = null;
         size = 0;
     }
