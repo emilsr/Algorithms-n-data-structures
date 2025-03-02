@@ -10,7 +10,7 @@ package main.tentaPrep.queue;
  * isFull() – Checks if the queue is full (for a fixed-size circular queue).
  * size() – Returns the number of elements in the queue.
  */
-
+/*
 public class CircularQue<E> {
     private E[] que;
     int size;
@@ -31,3 +31,5 @@ public class CircularQue<E> {
     }
 
 }
+
+ */

@@ -1,43 +1,24 @@
 package main.tentaPrep.linkedList;
 
 import java.util.Iterator;
-import java.util.Spliterator;
-import java.util.function.Consumer;
+import java.util.NoSuchElementException;
 
 /**
+ *
+ * ToDo fixa method getNode(index)
+ * ToDo implementera en E Get(index)
  * Skriva metoden size till listan. Använd rekursion för att lösa uppgiften.
  *
  * Få en iterator att fungera korrekt för en enkellänkad lista.
  *
  * Lägga till en metod för att ange startindex för en iterator.
  */
-public class MyLinkedList <E> implements Iterator {
+public class MyLinkedList <E> implements Iterable {
 
     Node<E> head;
     int size;
 
-
-    @Override
-    public boolean hasNext() {
-        return false;
-    }
-
-    @Override
-    public Object next() {
-        return null;
-    }
-
-    @Override
-    public void remove() {
-        Iterator.super.remove();
-    }
-
-    @Override
-    public void forEachRemaining(Consumer action) {
-        Iterator.super.forEachRemaining(action);
-    }
-
-    public class Node<E> {
+    private static class Node<E> {
 
         private E data;
         private Node<E> next;
@@ -57,11 +38,44 @@ public class MyLinkedList <E> implements Iterator {
 
     }
 
+    private class Itr implements Iterator<E>{
+        Node<E> current;
+
+        public Itr(Node<E> start){
+            current = start;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return current!=null;
+        }
+
+        @Override
+        public E next() {
+            if (current==null){
+                throw new NoSuchElementException();
+            }
+            E t = current.data;
+            current = current.next;
+            return t;
+        }
+
+        @Override
+        public void remove() {
+            Iterator.super.remove();
+        }
+    }
+
     public MyLinkedList (){
         head = null;
         size=0;
     }
 
+    public boolean add(E data){
+        return add(data, size);
+    }
+
+    // ToDo attLast och addAtIndex är samma method...
     public boolean add(E data, int index){
         if (0 > index || index > size) throw new IndexOutOfBoundsException();
         if (data == null) throw new IllegalArgumentException();
@@ -92,6 +106,10 @@ public class MyLinkedList <E> implements Iterator {
 
         }
         return null;
+    }
+
+    public Iterator<E> iterator(){
+        return new Itr(head);
     }
 
     public int size(){
@@ -143,29 +161,14 @@ public class MyLinkedList <E> implements Iterator {
 
     public static void main(String[] args) {
         MyLinkedList<String> ll = new MyLinkedList();
-        System.out.println("add node: " + ll.add("1", 0));
-        System.out.println(ll);
-        System.out.println("add node: " + ll.add("2", 0));
-        System.out.println(ll);
-        System.out.println("add node: " + ll.add("3", 0));
-        System.out.println(ll);
-        System.out.println("add node: " + ll.add("4", 1));
-        System.out.println(ll);
-        System.out.println("add node: " + ll.add("5", 1));
-        System.out.println(ll);
-        System.out.println("add node: " + ll.add("6", 5));
-        System.out.println(ll);
-        System.out.println(ll.remove("4"));
-        System.out.println(ll);
-        System.out.println(ll.remove("6"));
-        System.out.println(ll);
-        System.out.println(ll.remove("3"));
-        System.out.println(ll);
-        System.out.println(ll.size());
 
-
-
-
+        for (int i = 0; i<10; i++){
+            ll.add("Sträng" + i);
+        }
+        Iterator iter = ll.iterator();
+        while (iter.hasNext()){
+            System.out.println(iter.next());
+        }
     }
 
 
