@@ -51,6 +51,22 @@ public class Stuff {
 
         return Math.min(five+5, ten+10);
     }
+    //################################################################################################//
+    public static int cost2(int goal){ return cost2(1, goal, 0);}
+
+    private static int cost2(int points, int goal, int currentCost){
+        if (points == goal) return currentCost;
+        if (points > goal) return -1;
+
+        int ten = cost2(points*3, goal, currentCost+10);
+        int five =  cost2(points+4, goal, currentCost+5);
+
+        if (ten == -1 && five == -1) return -1;
+        if (five == -1) return ten;
+        if (ten == -1) return five;
+
+        return Math.min(five, ten);
+    }
 
     public static void main(String[] args) {
         int[] arr = {6, 3, 9, 5, 1};
@@ -61,7 +77,8 @@ public class Stuff {
         System.out.println(ROT(9, 1, 0.001));
 
         for (int i = 0; i < 125; i++){
-            System.out.println("Goal: " + i + " Solution: " + cost(i));
+            System.out.println("Cost1: Goal: " + i + " Solution: " + cost(i));
+            System.out.println("Cost2: Goal: " + i + " Solution: " + cost2(i));
         }
     }
 }
