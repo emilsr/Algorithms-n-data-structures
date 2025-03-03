@@ -1,5 +1,7 @@
 package main.tentaPrep.recursion;
 
+import java.awt.*;
+
 public class Stuff {
     public static int findLargestInt (int[] arr){
         return findLargestInt(arr, 0, 0);
@@ -32,8 +34,23 @@ public class Stuff {
         return ROT(n, a, e);
     }
     //################################################################################################//
-    
+    public static int cost(int goal){
+        return cost(1, goal);
+    }
 
+    public static int cost(int points, int goal){
+        if (points == goal) return 0;
+        if (points > goal) return -1;
+
+        int ten = cost(points*3, goal);
+        int five = cost(points+4, goal);
+
+        if (ten == -1 && five ==-1) return -1;
+        if (ten == -1) return five+5;
+        if (five == -1) return ten+10;
+
+        return Math.min(five+5, ten+10);
+    }
 
     public static void main(String[] args) {
         int[] arr = {6, 3, 9, 5, 1};
@@ -42,5 +59,9 @@ public class Stuff {
         System.out.println("x=2, n=2: " + xPoweredByN(2,2));
 
         System.out.println(ROT(9, 1, 0.001));
+
+        for (int i = 0; i < 125; i++){
+            System.out.println("Goal: " + i + " Solution: " + cost(i));
+        }
     }
 }
