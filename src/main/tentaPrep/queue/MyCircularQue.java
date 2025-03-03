@@ -3,14 +3,14 @@ package main.tentaPrep.queue;
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class CircularQue<E> implements Iterable<E> {
+public class MyCircularQue<E> implements Iterable<E> {
     private E[] que;
     int maxSize;
     int rearPointer;
     int frontPointer;
     int size;
 
-    public CircularQue(int initSize) {
+    public MyCircularQue(int initSize) {
         maxSize = initSize;
         rearPointer = -1;
         frontPointer = 0;
@@ -96,7 +96,7 @@ public class CircularQue<E> implements Iterable<E> {
     }
 
     public static void main(String[] args) {
-        CircularQue<Integer> cq= new CircularQue<>(2);
+        MyCircularQue<Integer> cq= new MyCircularQue<>(2);
         System.out.println("peek: " + cq.peek());
         System.out.println("add element 1: " + cq.enqueue(1));
         System.out.println("add element 2: " +cq.enqueue(2));
