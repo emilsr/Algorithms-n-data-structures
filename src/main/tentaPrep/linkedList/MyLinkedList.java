@@ -3,16 +3,6 @@ package main.tentaPrep.linkedList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-/**
- *
- * ToDo fixa method getNode(index)
- * ToDo implementera en E Get(index)
- * Skriva metoden size till listan. Använd rekursion för att lösa uppgiften.
- *
- * Få en iterator att fungera korrekt för en enkellänkad lista.
- *
- * Lägga till en metod för att ange startindex för en iterator.
- */
 public class MyLinkedList <E> implements Iterable {
 
     Node<E> head;
@@ -75,18 +65,33 @@ public class MyLinkedList <E> implements Iterable {
         return add(data, size);
     }
 
-    // ToDo attLast och addAtIndex är samma method...
     public boolean add(E data, int index){
         if (0 > index || index > size) throw new IndexOutOfBoundsException();
         if (data == null) throw new IllegalArgumentException();
         if (index == 0){
             addFirst(data);
-        } else if (index == size) {
-            addLast(data);
         } else {
             addAtIndex(data,index);
         }
         return true;
+    }
+
+    /**
+     * ToDo fixa method getNode(index)
+     * ToDo implementera en E Get(index)
+     */
+    public Node<E> getNode(int index){
+        if (index < 0 || index > size) {throw new IndexOutOfBoundsException();}
+        if (head == null){throw new NoSuchElementException();}
+        Node<E> t = head;
+        for (int i = 0; i < index; i++){
+            t = t.next;
+        }
+        return t;
+    }
+
+    public E get(int index){
+        return getNode(index).data;
     }
 
     public E remove(E data){
@@ -122,8 +127,7 @@ public class MyLinkedList <E> implements Iterable {
     }
 
     private void addFirst(E data){
-        Node<E> newNode = new Node<>(data, head);
-        head = newNode;
+        head = new Node<>(data, head);
         size++;
     }
 
@@ -133,15 +137,6 @@ public class MyLinkedList <E> implements Iterable {
             t = t.next;
         }
         t.next = new Node<>(data, t.next);
-        size++;
-    }
-
-    private void addLast(E data){
-        Node<E> t = head;
-        while (t.next != null){
-            t = t.next;
-        }
-        t.next = new Node<>(data, null);
         size++;
     }
 
@@ -169,6 +164,12 @@ public class MyLinkedList <E> implements Iterable {
         while (iter.hasNext()){
             System.out.println(iter.next());
         }
+        System.out.println("get 0:" + ll.get(0));
+        System.out.println("get 4:" + ll.get(4));
+        System.out.println("get 9:" + ll.get(9));
+
+
+
     }
 
 
