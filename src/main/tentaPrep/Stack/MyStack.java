@@ -2,8 +2,7 @@ package main.tentaPrep.Stack;
 
 /**
  * Stackar:
- * Implementera en stack för data av typen String med hjälp av en enkellänkad lista [6, 17].
- * Skriv en metod som kontrollerar om parenteser i en sträng är korrekt matchade (använd en stack) [18].
+
  *
  * pop()
  * push()
