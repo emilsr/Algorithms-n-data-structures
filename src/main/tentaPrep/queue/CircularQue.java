@@ -1,18 +1,9 @@
 package main.tentaPrep.queue;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
-/**
- * Methods
- * enqueue(element) – Adds an element to the rear of the queue.
- * dequeue() – Removes and returns the front element of the queue.
- * front() – Returns the front element without removing it.
- * rear() – Returns the rear element without removing it.
- * isEmpty() – Checks if the queue is empty.
- * size() – Returns the number of elements in the queue.
- */
-
-public class CircularQue<E> {
+public class CircularQue<E> implements Iterable<E> {
     private E[] que;
     int maxSize;
     int rearPointer;
@@ -27,8 +18,34 @@ public class CircularQue<E> {
         que = (E[]) new Object[maxSize];
     }
 
+    @Override
+    public Iterator<E> iterator() {
+        return new Itr(frontPointer);
+    }
+
+    private class Itr<E> implements Iterator {
+        int current;
+
+        public Itr(int index){
+            current = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return que[current] != null;
+        }
+
+        @Override
+        public Object next() {
+            E t = (E) que[current];
+            current = (current+1) % maxSize;
+            return t;
+        }
+
+    }
+
     public boolean enqueue(E element){
-        if (rearPointer==frontPointer || size == maxSize){
+        if (size == maxSize){
             reallocate();
         }
         que[++rearPointer%maxSize] = element;
@@ -60,19 +77,27 @@ public class CircularQue<E> {
                 ", maxSize=" + maxSize +
                 ", rearPointer=" + rearPointer +
                 ", frontPointer=" + frontPointer +
+                ", size=" + size +
                 '}';
     }
 
     private void reallocate(){
-        maxSize = maxSize*2;
-        E[] t = (E[]) new Object[maxSize];
-        // ToDo this loop 0 -> maxsize/2 but this will copy empty data...
-        System.arraycopy(que, 0, t, 0, maxSize/2);
+        int newMaxSize = maxSize*2;
+        E[] t = (E[]) new Object[newMaxSize];
+        int j = frontPointer;
+        for (int i = 0; i < size; i++){
+            t[i] = que[j];
+            j = (j+1) % maxSize;
+        }
+        frontPointer=0;
+        rearPointer=size-1;
+        maxSize = newMaxSize;
         que = t;
     }
 
     public static void main(String[] args) {
         CircularQue<Integer> cq= new CircularQue<>(2);
+        System.out.println("peek: " + cq.peek());
         System.out.println("add element 1: " + cq.enqueue(1));
         System.out.println("add element 2: " +cq.enqueue(2));
         System.out.println("add element 3: " +cq.enqueue(3));
@@ -90,6 +115,16 @@ public class CircularQue<E> {
         System.out.println("deque element: " +cq.dequeue());
         System.out.println("deque element: " +cq.dequeue());
         System.out.println("deque element: " +cq.dequeue());
+        for (int i = 5; i<15; i++){
+            System.out.println("add element " + i + ": " + cq.enqueue(i));
+        }
+        System.out.println(cq);
+
+        Iterator itrTest = cq.iterator();
+        System.out.println("Itr: ");
+        while (itrTest.hasNext()){
+            System.out.println(itrTest.next());
+        }
 
     }
 }
