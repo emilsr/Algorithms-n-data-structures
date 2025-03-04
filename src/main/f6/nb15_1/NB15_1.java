@@ -69,6 +69,7 @@ public class NB15_1 {
         System.out.println(tradeMarble(5, 1, 3));
         System.out.println(tradeMarble(2, 1, 3));
         System.out.println(tradeMarble(22, 22, 13));
+        System.out.println(tradeMarble(2, 5, 0));
     }
 
 }
