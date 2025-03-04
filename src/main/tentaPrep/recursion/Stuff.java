@@ -91,6 +91,30 @@ public class Stuff {
         return convertFromBinaryRec(arr, index-1);
     }
 
+    public static String convertToBinary(int value){
+        StringBuilder sb = new StringBuilder();
+        return reversString(convertToBinary(value, sb));
+    }
+
+    public static String convertToBinary(int value, StringBuilder sb){
+        if (value<1) return sb.toString();
+        if (value%2==0){
+            convertToBinary(value/2, sb.append("0"));
+        } else {
+            convertToBinary(value/2, sb.append("1"));
+        }
+        return sb.toString();
+    }
+
+    private static String reversString(String str){
+        char[] arr = str.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        for (int i = arr.length-1; i >= 0; i--){
+            sb.append(arr[i]);
+        }
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
         int[] arr = {6, 3, 9, 5, 1};
         System.out.println(findLargestInt(arr));
@@ -106,5 +130,6 @@ public class Stuff {
 
         System.out.println("ConvertBinaryIt: 1101=" + convertFromBinaryIt("1101"));
         System.out.println("ConvertBinaryRec: 1101=" + convertFromBinaryRec("1101"));
+        System.out.println("ConvertToBinary: 13=" + convertToBinary(13));
     }
 }
