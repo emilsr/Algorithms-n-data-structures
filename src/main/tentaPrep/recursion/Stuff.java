@@ -70,8 +70,6 @@ public class Stuff {
         int value = 0;
         for (int i = 0; i < arr.length; i++){
             if (arr[i]=='1') {  //Friendly reminder "" does not work in if statement
-                System.out.println("convertFromBinaryIt: char= "+arr[i] + " index=" + i + " add " + xPoweredByN(2, i));
-
                 value = value + xPoweredByN(2, arr.length-1-i);
             }
         }
@@ -92,27 +90,18 @@ public class Stuff {
     }
 
     public static String convertToBinary(int value){
-        StringBuilder sb = new StringBuilder();
-        return reversString(convertToBinary(value, sb));
+        String binary = "";
+        return convertToBinary(value, binary);
     }
 
-    public static String convertToBinary(int value, StringBuilder sb){
-        if (value<1) return sb.toString();
+    public static String convertToBinary(int value, String str){
+        System.out.println("str: " + str + " value: " + value );
+        if (value<1) return str;
         if (value%2==0){
-            convertToBinary(value/2, sb.append("0"));
+            return convertToBinary(value/2, "0"+str);
         } else {
-            convertToBinary(value/2, sb.append("1"));
+            return convertToBinary(value/2, "1"+str);
         }
-        return sb.toString();
-    }
-
-    private static String reversString(String str){
-        char[] arr = str.toCharArray();
-        StringBuilder sb = new StringBuilder();
-        for (int i = arr.length-1; i >= 0; i--){
-            sb.append(arr[i]);
-        }
-        return sb.toString();
     }
 
     public static void main(String[] args) {
@@ -128,8 +117,8 @@ public class Stuff {
             System.out.println("Cost2: Goal: " + i + " Solution: " + cost2(i));
         }
 
-        System.out.println("ConvertBinaryIt: 1101=" + convertFromBinaryIt("1101"));
-        System.out.println("ConvertBinaryRec: 1101=" + convertFromBinaryRec("1101"));
-        System.out.println("ConvertToBinary: 13=" + convertToBinary(13));
+        System.out.println("ConvertBinaryIt: 110100100=" + convertFromBinaryIt("110100100"));
+        System.out.println("ConvertBinaryRec: 110100100=" + convertFromBinaryRec("110100100"));
+        System.out.println("ConvertToBinary: 420=" + convertToBinary(420));
     }
 }
