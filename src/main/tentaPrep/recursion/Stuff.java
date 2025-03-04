@@ -1,7 +1,5 @@
 package main.tentaPrep.recursion;
 
-import java.awt.*;
-
 public class Stuff {
     public static int findLargestInt (int[] arr){
         return findLargestInt(arr, 0, 0);
@@ -15,7 +13,6 @@ public class Stuff {
     //################################################################################################//
     public static int xPoweredByN(int x, int n){
         if (n==0){
-            System.out.println("fel");
             return 1;
         }
         return xPoweredByN(x, n, 1);
@@ -68,11 +65,37 @@ public class Stuff {
         return Math.min(five, ten);
     }
 
+    public static int convertFromBinaryIt(String binaryString){
+        char[] arr = binaryString.toCharArray();
+        int value = 0;
+        for (int i = 0; i < arr.length; i++){
+            if (arr[i]=='1') {  //Friendly reminder "" does not work in if statement
+                System.out.println("convertFromBinaryIt: char= "+arr[i] + " index=" + i + " add " + xPoweredByN(2, i));
+
+                value = value + xPoweredByN(2, arr.length-1-i);
+            }
+        }
+        return value;
+    }
+
+    public static int convertFromBinaryRec(String binaryString){
+        char[] arr = binaryString.toCharArray();
+        return convertFromBinaryRec(arr, arr.length-1);
+    }
+
+    private static int convertFromBinaryRec(char[] arr, int index){
+        if (index<0) return 0;
+        if (arr[index] == '1'){
+            return convertFromBinaryRec(arr, index-1) + xPoweredByN(2, arr.length-1-index);
+        }
+        return convertFromBinaryRec(arr, index-1);
+    }
+
     public static void main(String[] args) {
         int[] arr = {6, 3, 9, 5, 1};
         System.out.println(findLargestInt(arr));
 
-        System.out.println("x=2, n=2: " + xPoweredByN(2,2));
+        System.out.println("x=2, n=2: " + xPoweredByN(2,0));
 
         System.out.println(ROT(9, 1, 0.001));
 
@@ -80,5 +103,8 @@ public class Stuff {
             System.out.println("Cost1: Goal: " + i + " Solution: " + cost(i));
             System.out.println("Cost2: Goal: " + i + " Solution: " + cost2(i));
         }
+
+        System.out.println("ConvertBinaryIt: 1101=" + convertFromBinaryIt("1101"));
+        System.out.println("ConvertBinaryRec: 1101=" + convertFromBinaryRec("1101"));
     }
 }
