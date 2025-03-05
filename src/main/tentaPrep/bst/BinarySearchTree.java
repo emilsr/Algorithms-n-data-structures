@@ -157,21 +157,33 @@ public class BinarySearchTree<E extends Comparable<E>>  {
     }
 
     public String printTre(){
+        if (root == null) return "";
         StringBuilder sb = new StringBuilder();
-        return printTre(root, sb);
-    }
+        Queue<Node<E>> queue = new LinkedList<>();
+        queue.offer(root);
 
-    private String printTre(Node<E> node, StringBuilder sb){
-        Queue<String> queue = new LinkedList<>();
-        if (node == null) return sb.toString();
-        sb.append(" " + node);
-        queue.offer(printTre(node.left, sb));
-        queue.offer(printTre(node.right, sb));
-        sb.append("\n");
         while (!queue.isEmpty()){
-            sb.append(queue.poll());
+            int wight = queue.size();
+            StringBuilder levelSb = new StringBuilder();
+
+            for (int i = 0; i<wight; i++){
+
+                Node<E> node = queue.poll();
+                if (node != null){
+                    levelSb.append(node.data).append(" ");
+                }
+                if (node.left != null){
+                    queue.offer(node.left);
+                }
+                if (node.right != null){
+                    queue.offer(node.right);
+                }
+            }
+            sb.append(levelSb.toString()).append("\n");
         }
         return sb.toString();
+
+
     }
 
 
