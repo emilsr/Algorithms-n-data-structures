@@ -1,5 +1,8 @@
 package main.tentaPrep.bst;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 //Note: we must have "extends Comparable" since we only can putt in and take out thing we can compare, if not we
 //don't know where to place the obj.
 public class BinarySearchTree<E extends Comparable<E>>  {
@@ -71,6 +74,7 @@ public class BinarySearchTree<E extends Comparable<E>>  {
         return null;
     }
 
+    /*
     public Node<E> getNode(E data){
         return getNode(data, root);
     }
@@ -85,7 +89,7 @@ public class BinarySearchTree<E extends Comparable<E>>  {
             return getNode(data, node.right);
         }
     }
-
+    */
 
     public E remove(E target){
         root =  remove(target, root);
@@ -124,18 +128,61 @@ public class BinarySearchTree<E extends Comparable<E>>  {
                 parentNodeToMove.left = nodeToMove.right;
                 node.data = nodeToMove.data;
                 return node;
-
-
             }
         }
     }
 
-    public String inOrder(Node node, StringBuilder sb){
+    public String inOrder(Node<E> node, StringBuilder sb){
         if (node==null) return null;
         inOrder(node.left, sb);
-        sb.append(": " + node.toString());
+        sb.append(" " + node);
         inOrder(node.right, sb);
         return sb.toString();
+    }
+
+    public String preOrder(Node<E> node, StringBuilder sb){
+        if (node == null) return null;
+        sb.append(" " +node);
+        preOrder(node.left, sb);
+        preOrder(node.right, sb);
+        return sb.toString();
+    }
+
+    public String postOrder(Node<E> node, StringBuilder sb){
+        if (node == null) return null;
+        preOrder(node.left, sb);
+        preOrder(node.right, sb);
+        sb.append(" " +node);
+        return sb.toString();
+    }
+
+    public String printTre(){
+        StringBuilder sb = new StringBuilder();
+        return printTre(root, sb);
+    }
+
+    private String printTre(Node<E> node, StringBuilder sb){
+        Queue<String> queue = new LinkedList<>();
+        if (node == null) return sb.toString();
+        sb.append(" " + node);
+        queue.offer(printTre(node.left, sb));
+        queue.offer(printTre(node.right, sb));
+        sb.append("\n");
+        while (!queue.isEmpty()){
+            sb.append(queue.poll());
+        }
+        return sb.toString();
+    }
+
+
+    public String toStringPre(){
+        StringBuilder sb = new StringBuilder();
+        return preOrder(root, sb);
+    }
+
+    public String toStringPost(){
+        StringBuilder sb = new StringBuilder();
+        return postOrder(root, sb);
     }
 
     public String toString(){
@@ -154,11 +201,14 @@ public class BinarySearchTree<E extends Comparable<E>>  {
         System.out.println(BST);
         System.out.println("find 3: " + BST.find(3));
         System.out.println("find 4: " + BST.find(4));
-        System.out.println("getNode(3).data: " + BST.getNode(3));
-        System.out.println("getNode(4).data: " + BST.getNode(4));
-        System.out.println("remove(2): " + BST.remove(2));
+        //System.out.println("getNode(3).data: " + BST.getNode(3));
+        //System.out.println("getNode(4).data: " + BST.getNode(4));
+        //System.out.println("remove(2): " + BST.remove(2));
         System.out.println(BST);
-        System.out.println("remove(1): " + BST.remove(1));
+        //System.out.println("remove(1): " + BST.remove(1));
         System.out.println(BST);
+        System.out.println(BST.toStringPre());
+        System.out.println("Print tree");
+        System.out.println(BST.printTre());
     }
 }
