@@ -1,0 +1,5 @@
+1. Rec
+    Matriser: Hitta vägar med maximal summa eller minimala steg [27-30].
+    Hoppa mellan tal: Räkna minimala antal hopp för att nå ett mål [21, 31].
+    Klocka: Flytta visaren till en annan given tid med minimalt antal knapptryckningar [32].
+    N Damer:
