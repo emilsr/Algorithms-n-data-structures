@@ -229,9 +229,9 @@ public class BinarySearchTree<E extends Comparable<E>>  {
     public E findIt(E target){
         Node<E> node = root;
         while (target.compareTo(node.data) != 0){
-            if (target.compareTo(node.data)<0){
+            if (target.compareTo(node.data)>0 && node.right != null){
                 node = node.right;
-            } else if (target.compareTo(node.data)>0) {
+            } else if (target.compareTo(node.data)<0 && node.left != null) {
                 node = node.left;
             } else {
                 return null;
@@ -311,7 +311,7 @@ public class BinarySearchTree<E extends Comparable<E>>  {
         System.out.println("getHeight: " + BST.getHeight());
         System.out.println("maxRec: " + BST.maxRec());
         System.out.println("maxIt: " + BST.maxIt());
-        System.out.println("findIt: " + BST.find(5));
+        System.out.println("findIt: " + BST.findIt(100));
 
     }
 }

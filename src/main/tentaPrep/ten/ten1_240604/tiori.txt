@@ -1,0 +1,16 @@
+1. Vad är en abstrakt datatyp? Hur förhåller sig en abstrakta datatyper till datastrukturer? Ge
+   exempel på en abstrakt datatyp och beskriv denna kort och förhållandet till datastrukturen.
+   Observera att vi här menar abstrakta datatyper så som de definieras i vår kurs och i
+   litteraturen i allmänhet. Inte så som de definieras i vår bok i C-programmering
+
+   En abstrakt datatyp är generisk. Exempelvis en nod (Node) som kan lagra E data som där man definerar typen när man
+   skapar typen. Datastruktuter har ofta en inre datastruktur som de är uppbygda av, exempelvis är LänkadLista som är
+   uppbyd av noder. när man skapar listan definerar man typen (om man vill ha typ checking).
+
+
+
+2. Ange ordo för antal jämförelser vid urvalssortering (selection sort). Motivera ditt svar tydligt.
+   Ange ordo för antal platsbyten vid urvalssortering. Motivera även detta tydligt
+
+   n^2 för båda?
+
