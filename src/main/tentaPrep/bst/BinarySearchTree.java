@@ -156,6 +156,58 @@ public class BinarySearchTree<E extends Comparable<E>>  {
         return sb.toString();
     }
 
+    public int nrOfNodes(){
+        if (root == null) return 0;
+        int counter=1;
+        Queue<Node<E>> queue = new LinkedList<>();
+        queue.offer(root);
+        Node<E> node;
+
+        while (!queue.isEmpty()){
+            node = queue.poll();
+            if (node.left != null){
+                queue.offer(node.left);
+                counter++;
+            }
+            if (node.right!= null){
+                queue.offer(node.right);
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    public int nrOfLeafs(){
+        if (root == null) return 0;
+        int counter=0;
+        Queue<Node<E>> queue = new LinkedList<>();
+        queue.offer(root);
+        Node<E> node;
+
+        while (!queue.isEmpty()){
+            node = queue.poll();
+            if (node.left == null && node.right == null){
+                counter++;
+            }
+            if (node.left != null){
+                queue.offer(node.left);
+            }
+            if (node.right!= null){
+                queue.offer(node.right);
+            }
+        }
+        return counter;
+    }
+
+    public int getHeight(){
+        return getHeight(root);
+    }
+
+    private int getHeight(Node<E> node){
+        if (node == null) return 0;
+        return Math.max(getHeight(node.left)+1, getHeight(node.right)+1);
+    }
+
     public String printTre(){
         if (root == null) return "";
         StringBuilder sb = new StringBuilder();
@@ -167,25 +219,22 @@ public class BinarySearchTree<E extends Comparable<E>>  {
             StringBuilder levelSb = new StringBuilder();
 
             for (int i = 0; i<wight; i++){
-
                 Node<E> node = queue.poll();
                 if (node != null){
                     levelSb.append(node.data).append(" ");
-                }
-                if (node.left != null){
                     queue.offer(node.left);
-                }
-                if (node.right != null){
                     queue.offer(node.right);
+                }else {
+                    levelSb.append("null ");
+                }
+                if ((i+1)%2==0){
+                    levelSb.append(": ");
                 }
             }
             sb.append(levelSb.toString()).append("\n");
         }
         return sb.toString();
-
-
     }
-
 
     public String toStringPre(){
         StringBuilder sb = new StringBuilder();
@@ -205,22 +254,29 @@ public class BinarySearchTree<E extends Comparable<E>>  {
 
     public static void main(String[] args) {
         BinarySearchTree<Integer> BST = new BinarySearchTree<>();
-        System.out.println("add 2: " + BST.add(2));
+        System.out.println("add 7: " + BST.add(7));
+        System.out.println(BST);
+        System.out.println("add 12: " + BST.add(12));
         System.out.println(BST);
         System.out.println("add 3: " + BST.add(3));
         System.out.println(BST);
+        System.out.println("add 2: " + BST.add(2));
         System.out.println("add 1: " + BST.add(1));
-        System.out.println(BST);
-        System.out.println("find 3: " + BST.find(3));
-        System.out.println("find 4: " + BST.find(4));
-        //System.out.println("getNode(3).data: " + BST.getNode(3));
-        //System.out.println("getNode(4).data: " + BST.getNode(4));
-        //System.out.println("remove(2): " + BST.remove(2));
-        System.out.println(BST);
-        //System.out.println("remove(1): " + BST.remove(1));
-        System.out.println(BST);
-        System.out.println(BST.toStringPre());
+        System.out.println("add 3: " + BST.add(5));
+        System.out.println("add 3: " + BST.add(4));
+
         System.out.println("Print tree");
         System.out.println(BST.printTre());
+        System.out.println("Nr of nodes:" + BST.nrOfNodes());
+        System.out.println("Nr of leafs: " + BST.nrOfLeafs());
+        System.out.println("getHeight: " + BST.getHeight());
+        for (int i = 13; i<19; i++){
+            System.out.println("add " + i +": " + BST.add(i));
+        }
+        System.out.println("Print tree");
+        System.out.println(BST.printTre());
+
+        System.out.println("getHeight: " + BST.getHeight());
+
     }
 }
