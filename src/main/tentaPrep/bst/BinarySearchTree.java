@@ -208,6 +208,38 @@ public class BinarySearchTree<E extends Comparable<E>>  {
         return Math.max(getHeight(node.left)+1, getHeight(node.right)+1);
     }
 
+    public E maxRec(){
+        return maxRec(root);
+    }
+
+    private E maxRec(Node<E> node){
+        if (node == null) return null;
+        if (node.right != null) return maxRec(node.right);
+        return node.data;
+    }
+
+    public E maxIt(){
+        Node<E> node = root;
+        while (node.right != null){
+            node = node.right;
+        }
+        return node.data;
+    }
+
+    public E findIt(E target){
+        Node<E> node = root;
+        while (target.compareTo(node.data) != 0){
+            if (target.compareTo(node.data)<0){
+                node = node.right;
+            } else if (target.compareTo(node.data)>0) {
+                node = node.left;
+            } else {
+                return null;
+            }
+        }
+        return node.data;
+    }
+
     public String printTre(){
         if (root == null) return "";
         StringBuilder sb = new StringBuilder();
@@ -277,6 +309,9 @@ public class BinarySearchTree<E extends Comparable<E>>  {
         System.out.println(BST.printTre());
 
         System.out.println("getHeight: " + BST.getHeight());
+        System.out.println("maxRec: " + BST.maxRec());
+        System.out.println("maxIt: " + BST.maxIt());
+        System.out.println("findIt: " + BST.find(5));
 
     }
 }
