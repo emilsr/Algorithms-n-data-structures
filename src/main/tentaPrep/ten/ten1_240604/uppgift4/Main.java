@@ -23,20 +23,15 @@ public class Main {
         System.out.println("Visiting: " + y +", " + x + " -> " + maze[y][x]);
         visited[maze[y][x]] = true;
 
-        if (c == 100) {
-            System.out.println("RIP");
-            return false;
-        }
-
         if (winCon(y, x)) return true;
 
-        boolean found = false;
+        if (validationCheck(y, x+1, maze) && existsPath(maze, y, x+1, c+1)) return true;
+        if (validationCheck(y+1, x, maze) && existsPath(maze, y+1, x, c+1)) return true;
+        if (validationCheck(y, x-1, maze) && existsPath(maze, y, x-1, c+1)) return true;
 
-        if (validationCheck(y, x+1, maze)){ found = existsPath(maze, y, x+1, c+1); }
-        if (validationCheck(y+1, x, maze)){ found = existsPath(maze, y+1, x, c+1); }
-        if (validationCheck(y, x-1, maze)){ found =  existsPath(maze, y, x-1, c+1); }
         visited[maze[y][x]] = false;
-        return found;
+
+        return false;
     }
 
     private static boolean winCon(int y, int x){
@@ -44,9 +39,7 @@ public class Main {
     }
 
     private static boolean validationCheck(int y, int x, int[][] maze){
-        if (isOutOfBound(y, x) || visited[maze[y][x]]) {
-            return false;
-        } return true;
+        return !isOutOfBound(y, x) && !visited[maze[y][x]];
     }
 
     private static boolean isOutOfBound(int y, int x){
