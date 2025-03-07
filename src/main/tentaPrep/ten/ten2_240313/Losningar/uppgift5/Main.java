@@ -1,16 +1,14 @@
-package main.tentaPrep.ten2_240313.uppgift5;
+package main.tentaPrep.ten.ten2_240313.Losningar.uppgift5;
 
 public class Main {
 
     public static void main(String[] args){
 
         BinarySearchTree<String> bst = new BinarySearchTree<>();
-        //buildTree(bst,new String[] {"H", "B", "N", "A", "E", "C", "F", "D", "P", "M"});
-        buildTree(bst,new String[] {"2", "1", "3", "4", "5", "6", "7", "8", "9", "10"});
-
+        buildTree(bst,new String[] {"H", "B", "N", "A", "E", "C", "F", "D", "P", "M"});
         System.out.println(bst.height());
-        System.out.println(bst.height("1"));
-        //System.out.println(bst.siblings("A","E"));
+        System.out.println(bst.height("E"));
+        System.out.println(bst.siblings("M","M"));
     }
 
     private static void buildTree(BinarySearchTree<String> bst, String[] strings) {

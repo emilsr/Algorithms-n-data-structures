@@ -1,0 +1,15 @@
+1. En rekursiv lösning blir ofta kortare och ibland lättare både att skriva, läsa och felsöka.
+Dock kan det ibland vara svårt att debugga rekursiva lösningar just pga de rekursiva anropen.
+En rekursiv lösning kan spara minne i de fall man i en rekursiv lösning kan använda endast en
+instans för att spara tillståndet och ändra och ändra tillbaka före och efter det rekursiva anropet.
+Tänk t.ex. på åtta damer där det i en rekursiv lösning räcker med ett bräde för att utforska alla
+möjliga brädtillstånd. En rekursiv lösning blir dock ofta långsammare än en iterativ pga overhead-
+kostnaden för varje metodanrop. I de fall då vi inte kan spara plats kan den rekursiva också kräva
+mer minne eftersom vi måste spara alla lokala variabler och återhopps-adresser på stacken. Vi har också
+att en rekursiv lösning normalt går på djupet först och i vissa problem då söker av lösningsrymden på ett
+ineffektivt sätt och ibland kräver ett maxdjup.
+
+2. I en heap är data lagrat i ett komplett binärt träd. När vi sätter in (eller tar bort) data i en
+heap måste vi som mest gå från botten till toppen (toppen till botten) en väg genom trädet. Det betyder
+att vi halverar antalet data vi har kvar i vår del av trädet i varje steg och att vi får O(log n) för
+både insättning och borttagning.

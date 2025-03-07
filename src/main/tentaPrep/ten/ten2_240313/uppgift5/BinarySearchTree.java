@@ -1,4 +1,4 @@
-package main.tentaPrep.ten2_240313.uppgift5;
+package main.tentaPrep.ten.ten2_240313.uppgift5;
 
 public class BinarySearchTree<E extends Comparable<E>> {
 

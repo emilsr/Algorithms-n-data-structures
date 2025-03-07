@@ -1,9 +1,8 @@
-package main.tentaPrep.ten2_240313.uppgift3;
+package main.tentaPrep.ten.ten2_240313.Losningar.uppgift3;
 
 public class Main {
-
     public static void main(String[] args) {
-        MyStack myStack = new MyStack();
+        Stack myStack = new Stack();
         System.out.println(myStack.isEmpty());
         System.out.println(myStack.peek());
         System.out.println(myStack.pop());
@@ -16,5 +15,3 @@ public class Main {
             System.out.print(myStack.pop()+" ");
     }
 }
-
-
