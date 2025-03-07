@@ -1,0 +1,10 @@
+1. En abstrakt datatyp definierar operationerna vi kan utföra på de data den skall lagra. Den definierar inte implementationen.
+T.ex. den abstrakta datatypen stack definierar att den ska ha metoderna pop och push och vad som händer när man anropar dem men
+säger inget om hur de ska implementeras. Push sätter in ett data i stacken. Pop returnerar det senaste datat som pushades. En
+faktisk datastruktur som är en stack måste lösa hur det beskrivna beteendet ska implementeras och behöver ta ställning till sådana
+saker som ska vi använda en länkad lista eller en array som inre datastruktur för att implementera detta beteende.
+
+2. Urvalssortering: Hitta det minsta elementet och sätt det först. Hitta det näst minsta elementet och sätt det på nästa plats osv.
+Vi kommer då att behöva jämföra alla element med den hitintills minsta för att hitta första elementet. Sedan måste vi jämföra alla
+utom första för att hitta nästa, osv. Detta ger O(n^2). För att få rätt element på första platsen behöver vi bara göra ett byta
+eftersom vi byter plats först när vi hittat det rätta. Detta gäller för alla platser. Vi får alltså O(n).

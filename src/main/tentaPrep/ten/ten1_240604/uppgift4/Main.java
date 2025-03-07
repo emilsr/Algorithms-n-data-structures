@@ -1,5 +1,9 @@
 package main.tentaPrep.ten.ten1_240604.uppgift4;
 
+/**
+ * Mycket bra jobbat, tänket är identiskt med Nicklas men nu bör undvika magiska numer
+ */
+
 public class Main {
 
     public static void main(String[] args){

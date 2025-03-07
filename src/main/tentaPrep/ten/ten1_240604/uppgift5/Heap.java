@@ -1,5 +1,11 @@
 package main.tentaPrep.ten.ten1_240604.uppgift5;
 
+/**
+ * Du gjorde denna uppgift mycket svårare än vad den behövde vara, des utom gjorde du en max heap istället för en min heap...
+ * Tanken om att den måste vara O(n) va dum, den ska vara O(log(n))
+ * tänk detta problem mer rekrusivt, specielt för swop...
+ */
+
 public class Heap {
     int[] arr;
     int size = 0;

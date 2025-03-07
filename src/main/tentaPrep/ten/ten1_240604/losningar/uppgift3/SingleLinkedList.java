@@ -1,4 +1,4 @@
-package main.tentaPrep.ten.ten1_240604.uppgift3;
+package main.tentaPrep.ten.ten1_240604.losningar.uppgift3;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -9,44 +9,39 @@ public class SingleLinkedList<E> implements Iterable<E> {
 
         Node<E> current;
 
-        public Itr(Node<E> node){
-            current = node;
+        public Itr(Node<E> start) {
+            current = start;
         }
 
-        // Fel, samma sak här current är redan next så vi behöver inte steppa vidare innan vi gör checken...
         @Override
         public boolean hasNext() {
-            return current.next != null;
+            return current != null;
         }
 
-        // Fel, current är redan next så du behöver inte gå vidare innan...
-        // Detta gör så att du missare första steget vid varje utskrift.
-        // Denna tioi vet du och borde verkligen inte missa på en tenta...
         @Override
         public E next() {
-            if (current.next != null){
-                current = current.next;
+            if (current == null) {
+                throw new NoSuchElementException();
             }
-            return current.data;
+            E returnValue = current.data;
+            current = current.next;
+            return returnValue;
         }
-
-        //Skriv kod för iteratorn
+        
         @Override
         public void remove() {
             throw new UnsupportedOperationException();
-        }//Du behöver inte implementera remove!
+        }
 
     }
     
     @Override
     public Iterator<E> iterator() {
-        Itr Iterator = new Itr(head);
-        return Iterator;
+        return new Itr(head);
     }
     
     public Iterator<E> iterator(int index) {
-        Itr Iterator = new Itr(getNode(index));
-        return Iterator;
+        return new Itr(getNode(index));
     }
     
     private static class Node<E> {
