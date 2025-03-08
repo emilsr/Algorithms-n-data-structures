@@ -12,32 +12,31 @@ public class Main {
     }
 
     private static int minNrOfStepsA(int position) {
-        return minNrOfStepsA(position , 0);
+        int answer = minNrOfStepsA(position , 0);
+        if (answer == Integer.MAX_VALUE/2){
+            return -1;
+        }
+        return answer;
     }
 
     private static int minNrOfStepsA(int position, int steps){
+        int a= Integer.MAX_VALUE/2, b = Integer.MAX_VALUE/2, c = Integer.MAX_VALUE/2, d = Integer.MAX_VALUE/2;
         if (position == 1){
-            System.out.println("we got here!!!!");
             return steps;
         }
-        if (steps>50) return -1;
-        if (position % 7 == 0 && position > 20){
-            System.out.println("P: " + position + " S: " + steps);
-            return minNrOfStepsA(position-20, steps+1);
+        if (position<1){
+            return Integer.MAX_VALUE/2;
         }
-        if (position % 5 == 0 && position > 16){
-            System.out.println("P: " + position + " S: " + steps);
-            return minNrOfStepsA(position-16, steps+1);
+        if(position%7 == 0){
+            a = minNrOfStepsA(position-20, steps+1);
+        } if (position%5 == 0){
+             b = minNrOfStepsA(position-16, steps+1);
+        } if (position%2==0){
+            c = minNrOfStepsA(position/2, steps+1);
         }
-        if (position % 2 == 0){
-            System.out.println("P: " + position + " S: " + steps);
-            return minNrOfStepsA(position/2, steps+1);
-        }
-        if (position > 7) {
-            System.out.println("P: " + position + " S: " + steps);
-            return minNrOfStepsA(position-7, steps+1);
-        }
-        return -1;
+        d = minNrOfStepsA(position-7, steps+1);
+
+        return Math.min(Math.min(a, b), Math.min(c, d));
     }
 
     private static int minNrOfStepsB(int position) {
