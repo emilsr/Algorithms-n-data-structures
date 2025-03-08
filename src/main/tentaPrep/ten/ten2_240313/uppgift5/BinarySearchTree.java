@@ -1,5 +1,8 @@
 package main.tentaPrep.ten.ten2_240313.uppgift5;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinarySearchTree<E extends Comparable<E>> {
 
     private static class Node<E>{
@@ -88,6 +91,34 @@ public class BinarySearchTree<E extends Comparable<E>> {
     }
 
     public boolean siblings(E data1, E data2){
+        if (data1 == null || data2 == null) return false;
+        if (root == null) return false;
+        return siblings(data1, data2, root);
+    }
+
+    private boolean siblings(E data1, E data2, Node<E> node){
+        Queue<Node<E>> que = new LinkedList<>();
+        que.offer(node);
+
+
+        while (!que.isEmpty()) {
+            node = que.poll();
+
+            if ((node.left != null && node.right != null)) {
+                if ((node.left.data.compareTo(data1) == 0 && node.right.data.compareTo(data2) == 0) ||
+                        ((node.right.data.compareTo(data1) == 0 && node.left.data.compareTo(data2) == 0))) {
+                    return true;
+                }
+            }
+
+            if (node.left != null) {
+                que.offer(node.left);
+            }
+            if (node.right != null) {
+                que.offer(node.right);
+            }
+
+        }
         return false;
     }
 }
