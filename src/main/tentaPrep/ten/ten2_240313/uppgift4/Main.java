@@ -1,14 +1,18 @@
 package main.tentaPrep.ten.ten2_240313.uppgift4;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(minNrOfStepsA(70));
-        //System.out.println(minNrOfStepsB(70));
-        System.out.println(minStepsWidthC(70));
+        System.out.println(minNrOfStepsA(10));
+        System.out.println(minNrOfStepsB(3));
+        System.out.println(minStepsWidthC(3));
+        System.out.println(minNrOfStepsA(623));
+        System.out.println(minNrOfStepsB(623));
+        System.out.println(minStepsWidthC(623));
     }
 
     private static int minNrOfStepsA(int position) {
@@ -40,7 +44,31 @@ public class Main {
     }
 
     private static int minNrOfStepsB(int position) {
-        return 0;
+        int [] memory = new int[position+1];
+        Arrays.fill(memory, -1);
+        int answer = minNrOfStepsB(position, memory);
+        if (answer-1 == Integer.MAX_VALUE/2) return -1;
+        return answer;
+    }
+
+    private static int minNrOfStepsB(int position, int[] memory){
+        int steps;
+        if (position < 1){
+            return Integer.MAX_VALUE/2;
+        }
+        if (memory[position] != -1){
+            return memory[position];
+        }
+        if (position == 1){
+            return 0;
+        }
+
+        steps = minNrOfStepsB(position-7, memory);
+        if (position%7==0) steps = Math.min(steps, minNrOfStepsB(position-20, memory));
+        if (position%5==0) steps = Math.min(steps, minNrOfStepsB(position-16, memory));
+        if (position%2==0) steps = Math.min(steps, minNrOfStepsB(position/2, memory));
+
+        return memory[position] = steps +1;
     }
 
     private static int minStepsWidthC(int position){
