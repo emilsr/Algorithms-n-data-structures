@@ -1,4 +1,4 @@
-package main.tentaPrep.ten.ten3_230315.uppgift3;
+package main.tentaPrep.ten.ten3_230607.uppgift3;
 
 public class Main {
     public static void buildTree(BinarySearchTree<Integer> b, int[] v){

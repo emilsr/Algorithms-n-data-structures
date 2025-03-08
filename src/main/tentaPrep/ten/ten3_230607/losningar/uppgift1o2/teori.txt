@@ -1,0 +1,17 @@
+1
+Att lägga till ett element (e) sist i en lista implementerad med en array som inre datastruktur är:
+
+O(1) om array:en inte är full
+Vi har helt enkelt en medlemsvariabel (size) i listan som håller reda på var sista platsen i array:en är. När vi lägger till ett nytt element tilldelar vi a[size++]= a.
+
+O(n) om array:en är full
+Innan vi kan stoppa in det nya elementet måste vi allokera en ny array med dubbla storleken. Vi måste sedan flytta alla n stycken element från den gamla till den nya listan.
+
+O(1) i genomsnitt om vi dubblar storleken när vi allokerar en ny array
+Om man dubblar storleken behöver vi allokera nya arrayer så att antalet flyttar totalt inte är fler än antalet insättningar (när vi fyllt array:en) och med en flytt per insättning får vi O(1).
+
+2
+Equals och hashCode ska vara definierade så att om två objekt är equal så har de också samma hashCode. Detta för att en hashtabell ska fungera som förväntat.
+
+Stoppar vi in ett objekt som är equal med ett objekt redan i hashtabellen ska det bytas ut och det gamla returneras. Detta kommer inte kunna hända om de inte får samma hashkod.
+

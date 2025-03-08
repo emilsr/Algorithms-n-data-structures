@@ -1,6 +1,6 @@
-package main.tentaPrep.ten.ten3_230315.uppgift3;
+package main.tentaPrep.ten.ten3_230607.losningar.uppgift3;
 
-import java.util.LinkedList;
+import java.util.ArrayDeque;
 import java.util.Queue;
 
 public class BinarySearchTree<E extends Comparable<E>> {
@@ -62,25 +62,14 @@ public class BinarySearchTree<E extends Comparable<E>> {
     }
 
     public String widthFirstString(){
-        if (root == null) return null;
-        return widthFirstString(root);
-    }
-
-    private String widthFirstString(Node<E> node){
-        Queue<Node<E>> q = new LinkedList<>();
-        q.offer(node);
+        Queue<Node<E>> queue = new ArrayDeque<>();
+        if(root!=null) queue.offer(root);
         StringBuilder sb = new StringBuilder();
-
-        while (!q.isEmpty()){
-            node = q.poll();
-            sb.append(node.data).append(", ");
-
-            if (node.left != null){
-                q.offer(node.left);
-            }
-            if (node.right !=null){
-                q.offer(node.right);
-            }
+        while(!queue.isEmpty()){
+            Node<E> current = queue.poll();
+            sb.append(current.data + ", ");
+            if(current.left!=null) queue.offer(current.left);
+            if(current.right!=null) queue.offer(current.right);
         }
         return sb.toString();
     }
