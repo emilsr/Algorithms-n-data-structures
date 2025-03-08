@@ -42,7 +42,7 @@ public class Main {
     }
 
     private static int maxSumDy(int[][] matrix, int row, int col, int[][] memory){
-        int sum = 0;
+        int sum;
 
         if (row == 5){
             return 0;
