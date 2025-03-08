@@ -6,7 +6,7 @@ public class Main {
 
         BinarySearchTree<String> bst = new BinarySearchTree<>();
         buildTree(bst,new String[] {"H", "B", "N", "A", "E", "C", "F", "D", "P", "M"});
-        //buildTree(bst,new String[] {"2", "1", "3", "4", "5", "6", "7", "8", "9", "10"});
+        //buildTree(bst,new String[] {"B", "A", "C", "D", "E"});
 
         System.out.println(bst.height());
         System.out.println(bst.height("E"));

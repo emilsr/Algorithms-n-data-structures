@@ -61,24 +61,30 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
     public int height(){
         if (root == null) return 0;
-        return height(root);
+        return heightRec(root);
     }
 
-    private int height(Node<E> node){
+    private int heightRec(Node<E> node){
         if (node == null) return 0;
-        return Math.max((height(node.left)+1), (height(node.right)+1));
+        int height = Math.max(heightRec(node.left), heightRec(node.right));
+        return height +1;
     }
 
     public int height(E data){
-        Node<E> node = root;
-        while (node != null && node.data.compareTo(data) != 0) {
-            if (data.compareTo(node.data)<0){
-                node = node.left;
-            }else if (data.compareTo(node.data)>0){
-                node = node.right;
-            }
+        Node<E> node = getNode(data, root);
+        return heightRec(node);
+    }
+
+    private Node<E> getNode(E data , Node<E> node){
+        if (node == null) {
+            return null;
         }
-        return height(node);
+        if (data.compareTo(node.data) == 0) {
+            return node;
+        } else if (data.compareTo(node.data) < 0) {
+            return getNode(data, node.left);
+        }
+        return getNode(data, node.right);
     }
 
     public boolean siblings(E data1, E data2){
