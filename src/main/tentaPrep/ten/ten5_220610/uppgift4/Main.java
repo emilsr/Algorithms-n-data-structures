@@ -28,7 +28,6 @@ public class Main {
         int jumpSize;
         int jumpsU = Integer.MAX_VALUE/2, jumpsD = Integer.MAX_VALUE/2;
 
-
         if (position == goal) {
             return jumps;
         }
