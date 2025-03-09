@@ -5,15 +5,21 @@ public class Main {
 
 	public static void buildTree(BinarySearchTree<String> b){
 
-		/*
+
 		b.add("4");
-		//b.add("2");
-		//b.add("3");
+		b.add("2");
+		b.add("3");
 		//b.add("4");
 		b.add("5");
+		b.add("7");
+		//b.add("6");
+		b.add("8");
+		b.add("1");
+		b.add("0");
 
-		 */
 
+
+		/*
 		b.add("P");
 		b.add("E");
 		b.add("U");
@@ -31,6 +37,8 @@ public class Main {
 		b.add("L");
 		b.add("W");
 
+		 */
+
 
 
 	}
@@ -39,7 +47,7 @@ public class Main {
 		BinarySearchTree<String> bst= new BinarySearchTree<>();
 		buildTree(bst);
 		System.out.println(bst);
-		System.out.println(bst.find("L"));
+		//System.out.println(bst.find("L"));
 		System.out.println(bst.nrOneGrandChild());
 		System.out.println(bst.secondSmallest());
 	}

@@ -1,6 +1,9 @@
 
 package main.tentaPrep.ten.ten4_230315.uppgift5;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinarySearchTree<E extends Comparable<E>> {
 	private static class Node<E>{
 		private E data;
@@ -79,8 +82,34 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	
 	public int nrOneGrandChild() {
 		if (root == null) return -1;
-		//return nrOneGrandChild(root, 0);
-		return -1;
+		int count = 0;
+		Node<E> node = root;
+		Queue<Node<E>> q = new LinkedList<>();
+		q.offer(node);
+
+		while (!q.isEmpty()){
+			node= q.poll();
+
+			if (node.left!=null){
+				if (node.right == null || ( node.right.right == null && node.right.left == null)){
+					if ((node.left.left != null && node.left.right == null) ||
+							(node.left.left == null && node.left.right != null)){
+						count++;
+					}
+				}
+				q.offer(node.left);
+			}
+			if (node.right!=null){
+				if (node.left == null || (node.left.left==null && node.left.right == null)){
+					if ((node.right.left != null && node.right.right == null) ||
+							(node.right.left == null && node.right.right != null)){
+						count++;
+					}
+				}
+				q.offer(node.right);
+			}
+		}
+		return count;
 	}
 
 
