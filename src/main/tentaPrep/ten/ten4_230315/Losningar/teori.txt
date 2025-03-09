@@ -1,0 +1,14 @@
+1.
+I ett fullt träd är alla nivåer i trädet fulla.
+
+I ett komplett träd är alla nivåer fulla utom möjligen den sista. I denna är noderna placerade så långt till vänster som möjligt.
+
+I ett balanserat träd skiljer sig höjden för vänster och höger underträd till varje nod med maximalt 1.
+
+2.
+En mängd är en samling som inte innehåller några kopior. Lägger man till A till mängden {A,B,C} får man mängden {A,B,C}
+
+En avbildning är en mängd av ordnade par (nyckel, värde). Nycklarna är unika men värdena behöver inte vara det.
+
+En avbildning implementeras enklast med en hashtabell, där vi mha nyckeln räknar ut ett index för var i tabellen nyckeln och värdet ligger.
+
