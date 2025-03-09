@@ -14,7 +14,7 @@ public class Main {
 
     }
 
-    // ToDo, testa skriva dessa utan step, kan vara bra träning. 
+    // ToDo, testa skriva dessa utan step, kan vara bra träning.
     private static int nrOfPushes(int startTime, int endTime) {
         int val = nrOfPushesRec(startTime, endTime, 0);
         if (val >= Integer.MAX_VALUE/2) return -1;
